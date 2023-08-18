@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:41:41 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/18 16:39:36 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/18 22:49:01 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,17 @@ typedef struct s_vec
 typedef struct s_player
 {
 	t_vec	pos;
-	t_vec	dir;
-	t_vec	plane;
+	double	dir; //dir of the player is looking at in radian
+	t_vec	pos_modif;
+	double	dir_modif;
+	// t_vec	plane;
 }				t_player;
 
-typedef struct s_ray
-{
-	t_vec	pos;
-	t_vec	dir;
-}				t_ray;
+// typedef struct s_ray
+// {
+// 	t_vec	pos;
+// 	t_vec	dir;
+// }				t_ray;
 
 typedef struct s_minimap
 {
@@ -53,5 +55,29 @@ typedef struct s_minimap
 	int	tile_size;
 }				t_minimap;
 
+typedef struct s_input
+{
+	int		horizontal_move; //move the player left or right using keys A and D
+	int		vertical_move; //move the player forward or backward using keys W and S
+	double	rotated; //rotated direction of the player using the arrow keys
+}				t_input;
+
+typedef struct s_ray
+{
+	double	ray_dir;
+	t_vec	intersec;
+	double	dist;
+}				t_ray;
+
+typedef struct s_data
+{
+	// void	*mlx;
+	// void	*img;
+	// t_map		map;
+	t_player	player;
+	t_minimap	minimap;
+	t_input		input;
+	t_ray		ray;
+}				t_data;
 
 #endif
