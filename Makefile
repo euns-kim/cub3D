@@ -6,7 +6,7 @@
 #    By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/18 16:21:34 by eunskim          ###   ########.fr        #
+#    Updated: 2023/08/18 16:25:15 by eunskim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,17 +35,17 @@ LIBFT_DIR   := lib/libft
 LIBFT       := $(LIBFT_DIR)/libft.a
 
 LIBGNL_DIR  := lib/get_next_line
-GNL			:= $(LIBGNL_DIR)/get_next_line.a
+GNL         := $(LIBGNL_DIR)/get_next_line.a
 
 INCLUDE_DIR := include
 
-HEADERS		:= -I $(INCLUDE_DIR) -I $(LIBMLX_DIR)/include/MLX42/ -I $(LIBFT_DIR)
+HEADERS     := -I $(INCLUDE_DIR) -I $(LIBMLX_DIR)/include/MLX42/ -I $(LIBFT_DIR)
 FRAMEWORKS  := -framework Cocoa -framework OpenGL -framework IOKit
 
 SRC_DIR     := src/
 SRC         := \
-			main.c \
-			test.c
+main.c \
+test.c
 SRCS = $(addprefix $(SRC_DIR),$(SRC))
 
 OBJ_DIR = obj/
