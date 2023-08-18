@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/18 19:03:04 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/18 21:26:22 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@
 # include "get_next_line.h"
 # include "parser.h"
 
+typedef enum e_cub_exit_code
+{
+	CUB_SUCCESS,
+	CUB_INVALID_ARGUMENT
+}	t_cub_exit_code;
+
 typedef struct s_cub
 {
-	t_map_data	*map_data;
+	t_map_data	map_data;
 }	t_cub;
 
 #endif
