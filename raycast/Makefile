@@ -2,7 +2,7 @@ NAME        := raycast
 CC          := cc
 CFLAGS      := -Wextra -Wall -Werror
 CFLAGS      += -Wunreachable-code -Ofast
-#CFLAGS      += -g3 -fsanitize=address
+CFLAGS      += -g3 -fsanitize=address
 
 INCLUDE_DIR := .
 HEADERS		:= -I $(INCLUDE_DIR)

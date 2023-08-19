@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:41:41 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/18 22:49:01 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/19 12:58:35 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_ray
 	double	ray_dir;
 	t_vec	intersec;
 	double	dist;
+	int		side;
 }				t_ray;
 
 typedef struct s_data
