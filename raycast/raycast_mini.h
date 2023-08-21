@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:41:41 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/19 12:58:35 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/21 21:38:46 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_ray
 	t_vec	intersec;
 	double	dist;
 	int		side;
+	double	wall_height;
 }				t_ray;
 
 typedef struct s_data
@@ -76,9 +77,9 @@ typedef struct s_data
 	// void	*img;
 	// t_map		map;
 	t_player	player;
-	t_minimap	minimap;
 	t_input		input;
-	t_ray		ray;
+	t_minimap	minimap;
+	t_ray		*ray;
 }				t_data;
 
 #endif

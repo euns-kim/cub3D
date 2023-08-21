@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1011/08/18 16:01:11 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/19 17:32:27 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/21 21:35:20 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int worldMap[mapHeight][mapWidth]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, //0
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,'N',0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,'E',0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1},
   {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1}, //5
   {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1},
@@ -70,11 +70,11 @@ double	get_player_dir(int i, int j)
 	if (worldMap[j][i] == 'N')
 		dir = 90 * PI / 180;
 	else if (worldMap[j][i] == 'S')
-		dir = 270 * PI / 180;
+		dir = 3 * PI / 2;
 	else if (worldMap[j][i] == 'E')
 		dir = 0;
 	else if (worldMap[j][i] == 'W')
-		dir = 180 * PI / 180;
+		dir = PI;
 	return (dir);
 }
 
@@ -131,46 +131,17 @@ void	update_player_info(t_player *player, t_input *input)
 	player->dir_modif = player->dir + input->rotated;
 }
 
-t_vec	get_increment_x_intersec(double dir_modif, int tile_size)
+t_vec	get_increment_x_intersec(double ray_dir, int tile_size)
 {
 	t_vec	increment;
 
 	increment.x = tile_size;
 	increment.y = tile_size;
-	// if (dir_modif > 0 && dir_modif <= PI / 2)
-	// {
-	// 	printf("hello2");
-	// 	increment.y *= -1;
-	// 	increment.x = increment.y / tan(dir_modif);
-	// }
-	// else if (dir_modif > PI / 2 && dir_modif < PI)
-	// {
-	// 	printf("hello");
-	// 	increment.y *= -1;
-	// 	increment.x = increment.y / tan(PI - dir_modif);
-	// }
-	// else if (dir_modif > PI && dir_modif <= 1.5 * PI)
-	// {
-	// 	printf("hello3");
-	// 	increment.y *= 1;
-	// 	increment.x = -1 * increment.y / tan(dir_modif - PI);
-	// }
-	// else if (dir_modif > 1.5 * PI && dir_modif < 2 * PI)
-	// {
-	// 	printf("hello4");
-	// 	increment.y *= 1;
-	// 	increment.x = increment.y / tan(2 * PI - dir_modif);
-	// }
-	if (dir_modif > 0 && dir_modif < PI) //facing up
-	{
+	if (ray_dir > 0 && ray_dir < PI) //facing up
 		increment.y *= -1;
-		increment.x = increment.y / tan(dir_modif);
-	}
-	else //facing down
-	{
+	else if (ray_dir > PI && ray_dir < 2 * PI)//facing down
 		increment.y *= 1;
-		increment.x = increment.y / tan(dir_modif);
-	}
+	increment.x = (-1) * increment.y / tan(ray_dir);
 	return (increment);
 }
 
@@ -191,45 +162,30 @@ t_vec	check_horiz_intersec(int worldMap[mapHeight][mapWidth], \
 	intersec.x = player.pos_modif.x + (player.pos_modif.y - intersec.y) / \
 		tan(ray_dir);
 	increment = get_increment_x_intersec(ray_dir, tile_size);
-	while ((int)(intersec.y / tile_size) <= mapHeight && (int)(intersec.y / tile_size) >=0  && \
-		(int)(intersec.x / tile_size) <= mapWidth && (int)(intersec.x / tile_size) >= 0 && \
+	while ((int)(intersec.y / tile_size) < mapHeight && (int)(intersec.y / tile_size) >=0  && \
+		(int)(intersec.x / tile_size) < mapWidth && (int)(intersec.x / tile_size) >= 0 && \
 		worldMap[(int)(intersec.y / tile_size)] \
 		[(int)(intersec.x / tile_size)] != 1) //round down, check if the intersec is a wall
 	{
 		intersec.x += increment.x;
 		intersec.y += increment.y;
 	}
-	// printf("the hit point at the map is [%d][%d]\n", \
+	// printf("the hit point of [horiz] at the map is [%d][%d]\n", \
 	// 	(int)(intersec.y / tile_size), (int)(intersec.x / tile_size));
 	return (intersec);
 }
 
-t_vec	get_increment_y_intersec(double dir_modif, int tile_size)
+t_vec	get_increment_y_intersec(double ray_dir, int tile_size)
 {
 	t_vec	increment;
 
 	increment.x = tile_size;
 	increment.y = tile_size;
-	if (dir_modif >= 0 && dir_modif < PI / 2)
-	{
-		increment.x *= 1;
-		increment.y = -1 * increment.x * tan(dir_modif);
-	}
-	else if (dir_modif > PI / 2 && dir_modif < PI)
-	{
+	if (ray_dir > PI / 2 && ray_dir < 3 * PI / 2) //facing left
 		increment.x *= -1;
-		increment.y = increment.x * tan(PI - dir_modif);
-	}
-	else if (dir_modif >= PI && dir_modif < 1.5 * PI)
-	{
-		increment.x *= -1;
-		increment.y = -1 * increment.x * tan(dir_modif - PI);
-	}
-	else if (dir_modif > 1.5 * PI && dir_modif < 2 * PI)
-	{
+	else if ((ray_dir < PI / 2 && ray_dir > 0) || (ray_dir > 3 * PI / 2 && ray_dir < 2 * PI))//facing right
 		increment.x *= 1;
-		increment.y = increment.x * tan(2 * PI - dir_modif);
-	}
+	increment.y = (-1) * increment.x * tan(ray_dir);
 	return (increment);
 }
 
@@ -241,28 +197,24 @@ t_vec	check_verti_intersec(int worldMap[mapHeight][mapWidth], \
 
 	intersec.y = INFINITY;
 	intersec.x = player.pos_modif.x;
-	if (ray_dir == PI / 2 || ray_dir == 1.5 * PI)
+	if (ray_dir == PI / 2 || ray_dir == 3 * PI / 2)
 		return (intersec);
-	if (ray_dir > PI / 2 && ray_dir < 1.5 * PI) //facing left
+	if (ray_dir > PI / 2 && ray_dir < 3 * PI / 2) //facing left
 		intersec.x = floor(player.pos_modif.x / tile_size) * tile_size - 1; //round down
 	else
 		intersec.x = floor(player.pos_modif.x / tile_size) * tile_size + tile_size; //round down
 	intersec.y = player.pos_modif.y + (player.pos_modif.x - intersec.x) * \
 		tan(ray_dir);
-	// printf("outside index.x = %d\t", (int)(intersec.x / tile_size));
-	// printf("outside index.y = %d\n", (int)(intersec.y / tile_size));
 	increment = get_increment_y_intersec(ray_dir, tile_size);
-	while ((int)(intersec.y / tile_size) <= mapHeight && (int)(intersec.y / tile_size) >=0  && \
-		(int)(intersec.x / tile_size) <= mapWidth && (int)(intersec.x / tile_size) >= 0 && \
+	while ((int)(intersec.y / tile_size) < mapHeight && (int)(intersec.y / tile_size) >=0  && \
+		(int)(intersec.x / tile_size) < mapWidth && (int)(intersec.x / tile_size) >=0 && \
 		worldMap[(int)(intersec.y / tile_size)] \
 		[(int)(intersec.x / tile_size)] != 1) //round down, check if the intersec is a wall
 	{
-		// printf("index.x = %d\t", (int)(intersec.x / tile_size));
-		// printf("index.y = %d\n", (int)(intersec.y / tile_size));
 		intersec.x += increment.x;
 		intersec.y += increment.y;
 	}
-	// printf("the hit point at the map is [%d][%d]\n", \
+	// printf("the hit point of [verti] at the map is [%d][%d]\n", \
 	// 	(int)(intersec.y / tile_size), (int)(intersec.x / tile_size));
 	return (intersec);
 }
@@ -285,12 +237,12 @@ t_vec	determine_intersec(int worldMap[mapHeight][mapWidth], int tile_size, t_pla
 		return (verti_intersec);
 	if (verti_intersec.y == INFINITY)
 		return (horiz_intersec);
-	if (fabs(player.pos_modif.x - horiz_intersec.x) / fabs(cos(ray_dir)) < \
-		fabs(player.pos_modif.x - verti_intersec.x) / fabs(cos(ray_dir)))
-		{
+	if (fabs((player.pos_modif.x - horiz_intersec.x) / cos(ray_dir)) < \
+		fabs((player.pos_modif.x - verti_intersec.x) / cos(ray_dir)))
+	{
 			// ray.side = 0; //hit the horizontal wall. checking NWSE with player.dir_modif or ray_dir ??
-			return (horiz_intersec);
-		}
+		return (horiz_intersec);
+	}
 	// ray.side = 1; //hit the vertical wall. checking NWSE with player.dir_modif or ray_dir ??
 	return (verti_intersec);
 }
@@ -313,30 +265,22 @@ void	cast_ray(int worldMap[mapHeight][mapWidth], t_player player, \
 
 	i = 0;
 	ray_dir = player.dir_modif + 30 * PI / 180;
-	// while (i < minimap.width)
+	if (ray_dir > 2 * PI)
+		ray_dir -= 2 * PI;
+	//calculate clockwise ray
+	while (i < minimap.width)
 	{
-		printf("ray_dir = %f\n", ray_dir);
+		printf("ray_dir = %f\t", ray_dir);
+		// printf("ray_dir in degree = %f\n", ray_dir * 180 / PI);
 		intersec = determine_intersec(worldMap, minimap.tile_size, player, ray_dir);
-		// printf("intersec.x = %f\n", intersec.x);
-		// printf("intersec.y = %f\n", intersec.y);
 		printf("the hit point at the map is [%d][%d]\n", \
 			(int)(intersec.y / minimap.tile_size), (int)(intersec.x / minimap.tile_size));
 		// draw_line(player.pos_modif, intersec);
-		ray_dir += 60 * PI / 180 / minimap.width;
+		ray_dir -= 60 * PI / 180 / minimap.width;
+		if (ray_dir < 0)
+			ray_dir += 2 * PI;
 		i++;
 	}
-	//calculate counterclockwise ray
-	// while (ray_dir <= player.dir_modif + 30 * PI / 180)
-	// {
-	// 	printf("ray_dir = %f\n", ray_dir);
-	// 	intersec = determine_intersec(worldMap, minimap.tile_size, player, ray_dir);
-	// 	printf("intersec.x = %f\t", intersec.x);
-	// 	printf("intersec.y = %f\n", intersec.y);
-	// 	printf("the hit point at the map is [%d][%d]\n", \
-	// 		(int)(intersec.y / minimap.tile_size), (int)(intersec.x / minimap.tile_size));
-	// 	// draw_line(player.pos_modif, intersec);
-	// 	ray_dir += 60 * PI / 180 / minimap.width;
-	// }
 }
 
 int	main(void)
