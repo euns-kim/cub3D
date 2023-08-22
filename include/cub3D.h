@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/18 20:24:45 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/18 22:50:38 by eunskim          ###   ########.fr       */
+/*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
+/*   Updated: 2023/08/18 21:26:22 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
-int	main(int argc, char **argv)
+# include "MLX42.h"
+# include "libft.h"
+# include "get_next_line.h"
+# include "parser.h"
+
+typedef enum e_cub_exit_code
 {
-	t_cub	data;
+	CUB_SUCCESS,
+	CUB_INVALID_ARGUMENT
+}	t_cub_exit_code;
 
-	if (argc != 2)
-	{
-		ft_putstr_fd("Invalid argument.", 2); // errors better handled separately
-		ft_putstr_fd("Usage: ./cub3D [filename].cub\n", 2);
-		return (1);
-	}
-	parser(&data.map_data, argv[1]); // error exit at each time
-	return (0);
-}
+typedef struct s_cub
+{
+	t_map_data	map_data;
+}	t_cub;
+
+#endif
