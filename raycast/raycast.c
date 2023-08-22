@@ -22,7 +22,7 @@ void	cast_ray(t_ray *rays, int worldMap[mapHeight][mapWidth], t_player player, \
 	double	ray_dir;
 
 	i = 0;
-	ray_dir = player.dir_modif + 30 * PI / 180;
+	ray_dir = player.dir_modif + FOV / 2 * PI / 180;
 	if (ray_dir > 2 * PI)
 		ray_dir -= 2 * PI;
 	// do I need check the angle after rotate? or just check the angle before rotate?
@@ -38,13 +38,21 @@ void	cast_ray(t_ray *rays, int worldMap[mapHeight][mapWidth], t_player player, \
 		printf("the hit point at the map is [%d][%d]\n", \
 			(int)(rays[i].intersec.y / map_size.tile_size), (int)(rays[i].intersec.x / map_size.tile_size));
 		// calculate distance
+		rays[i].dist = calc_dist(player.pos_modif.x, rays[i].intersec.x, ray_dir) * cos(player.dir_modif - rays[i].ray_dir);
+		printf("the distance is %f\n", rays[i].dist);
+		//calculate wall height
+		rays[i].wall_height = map_size.tile_size / rays[i].dist * DIST_TO_PROJ;
+		printf("the wall height is %f\n", rays[i].wall_height);
+		rays[i].wall_top = (HEIGHT - rays[i].wall_height) / 2; //screen coordinate
+		printf("the wall top is %f\n", rays[i].wall_top);
+		rays[i].wall_bottom = (HEIGHT + rays[i].wall_height) / 2; //screen coordinate
+		printf("the wall bottom is %f\n", rays[i].wall_bottom);
 		// draw_line(player.pos_modif, intersec);
-		ray_dir -= 60 * PI / 180 / map_size.width;
+		ray_dir -= FOV * PI / 180 / map_size.width;
 		if (ray_dir < 0)
 			ray_dir += 2 * PI;
 		i++;
 	}
-	printf("how many rays are there %d\n", i);
 }
 
 int	main(void)

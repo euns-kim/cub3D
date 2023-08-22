@@ -17,6 +17,14 @@
 #  define PI 3.1415
 # endif
 
+#ifndef FOV
+# define FOV 60
+#endif
+
+# ifndef DIST_TO_PROJ
+#  define DIST_TO_PROJ WIDTH / 2 / tan(FOV / 2 * PI / 180)
+# endif
+
 # include <math.h>
 
 # include "mock_map.h"
@@ -88,5 +96,10 @@ void	determine_intersec(t_ray *ray, int worldMap[mapHeight][mapWidth], \
 /**
  * raycast
  */
+
+/**
+ * calculate_utils
+ */
+double calc_dist(double pos_x, double intersec_x, double ray_dir);
 
 #endif

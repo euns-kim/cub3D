@@ -25,10 +25,6 @@
 #  define TILE_SIZE 64
 # endif
 
-# ifndef FOV
-#  define FOV 60
-# endif
-
 // # include "MLX42.h"
 // # include "libft.h"
 // # include "get_next_line.h"

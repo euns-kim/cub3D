@@ -121,8 +121,8 @@ void	determine_intersec(t_ray *ray, int worldMap[mapHeight][mapWidth], int tile_
 		ray->intersec = verti_intersec;
 	else if (verti_intersec.y == INFINITY)
 		ray->intersec = horiz_intersec;
-	else if (fabs((player.pos_modif.x - horiz_intersec.x) / cos(ray->ray_dir)) < \
-		fabs((player.pos_modif.x - verti_intersec.x) / cos(ray->ray_dir)))
+	else if (calc_dist(player.pos_modif.x, horiz_intersec.x, ray->ray_dir) < \
+		calc_dist(player.pos_modif.x, verti_intersec.x, ray->ray_dir))
 	{
 		ray->side = 0; //hit the horizontal wall. checking NWSE with player.dir_modif or ray_dir ??
 		ray->intersec = horiz_intersec;
