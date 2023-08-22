@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_mini.h                                     :+:      :+:    :+:   */
+/*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:41:41 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/22 21:28:04 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/22 23:09:06 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCAST_MINI_H
-# define RAYCAST_MINI_H
+#ifndef RAYCAST_H
+# define RAYCAST_H
+
+# ifndef PI
+#  define PI 3.1415
+# endif
 
 # include <math.h>
+
+# include "mock_map.h"
 
 typedef struct s_vec
 {
@@ -55,5 +61,32 @@ typedef struct s_ray
 // 	t_minimap	minimap;
 // 	t_ray		ray[WIDTH];
 // }				t_data;
+
+/**
+ * initializations
+ */
+
+t_vec	get_player_pos(int i, int j);
+double	get_player_dir(int i, int j);
+t_player	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
+	int tile_size);
+void	init_minimap_size(t_map_size *minimap_size);
+void	init_map_size(t_map_size *map_size);
+
+/**
+ * hit_point calculations
+ */
+t_vec	get_increment_x_intersec(double ray_dir, int tile_size);
+t_vec	check_horiz_intersec(int worldMap[mapHeight][mapWidth], \
+	int tile_size, t_player player, double ray_dir);
+t_vec	get_increment_y_intersec(double ray_dir, int tile_size);
+t_vec	check_verti_intersec(int worldMap[mapHeight][mapWidth], \
+	int tile_size, t_player player, double ray_dir);
+void	determine_intersec(t_ray *ray, int worldMap[mapHeight][mapWidth], \
+	int tile_size, t_player player);
+
+/**
+ * raycast
+ */
 
 #endif

@@ -13,10 +13,28 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "MLX42.h"
-# include "libft.h"
-# include "get_next_line.h"
-# include "parser.h"
+# ifndef WIDTH
+#  define WIDTH 640
+# endif
+
+# ifndef HEIGHT
+#  define HEIGHT 480
+# endif
+
+# ifndef TILE_SIZE
+#  define TILE_SIZE 64
+# endif
+
+# ifndef FOV
+#  define FOV 60
+# endif
+
+// # include "MLX42.h"
+// # include "libft.h"
+// # include "get_next_line.h"
+// # include "parser.h"
+# include "raycast.h"
+# include "hook.h"
 
 typedef enum e_cub_exit_code
 {
@@ -26,7 +44,17 @@ typedef enum e_cub_exit_code
 
 typedef struct s_cub
 {
-	t_map_data	map_data;
+	// mlx
+	// img for large map
+	// img for minimap
+	// img for rays in minimap
+	// t_map_data	map_data;
+	t_player	player;
+	t_map_size	map_size;
+	// t_map_size	minimap_size;
+	t_ray		rays[WIDTH];
+
+
 }	t_cub;
 
 #endif

@@ -4,17 +4,20 @@ CFLAGS      := -Wextra -Wall -Werror
 CFLAGS      += -Wunreachable-code -Ofast
 CFLAGS      += -g3 -fsanitize=address
 
-INCLUDE_DIR := .
+INCLUDE_DIR := ../include
 HEADERS		:= -I $(INCLUDE_DIR)
 
 SRC         := \
-			raycast.c
+			raycast.c \
+			initializer.c \
+			hit_point.c \
+			mock_map.c
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(CFLAGS) $(HEADERS) $(SRC) -o $(NAME) && \
-	echo "$(BLUE)Compilation of $(CYAN)>>$(NAME)<<$(RESET)$(BLUE) successful!$(RESET)"
+	$(CC) $(CFLAGS) $(HEADERS) $(SRC) -o $(NAME) -lm && \
+	 echo "$(BLUE)Compilation of $(CYAN)>>$(NAME)<<$(RESET)$(BLUE) successful!$(RESET)"
 
 clean:
 	@rm -f $(NAME)
