@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/22 17:04:53 by eunskim          ###   ########.fr       */
+/*   Created: 2023/08/22 18:59:42 by eunskim           #+#    #+#             */
+/*   Updated: 2023/08/22 18:59:53 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3D.h"
 
-# include "MLX42.h"
-# include "libft.h"
-# include "get_next_line.h"
-# include "parser.h"
-
-typedef enum e_cub_exit_code
+int	extension_check(const char *path, const char *extension)
 {
-	CUB_SUCCESS,
-	CUB_INVALID_ARGUMENT,
-	CUB_WRONG_EXTENSION
-}	t_cub_exit_code;
-
-typedef struct s_cub
-{
-	t_map_data	map_data;
-}	t_cub;
-
-#endif
+	size_t	path_len;
+	
+	path_len = ft_strlen(path);
+	if (path_len < 4)
+		return (0);
+	if (ft_strncmp(path - path_len + 4, extension, 4) == 0)
+		return (1);
+	return (0);
+}
