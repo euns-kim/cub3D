@@ -6,67 +6,51 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:57:35 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/22 22:35:12 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/23 18:53:02 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	check_parsing_status(char *line, t_parser_data *parser_data, t_map_data *map_data)
+// allocate, free, reallocate ** space, copy the buffer
+// before copying new buffer check if the string contains only the allowed character
+// and if the characters other than 1 neighbour space -> UNCLOSED_MAP
+// and more ...
+
+// check if the map is valid at the end
+void	parse_map(char *line, t_parser_data *parser_data, t_map_data *map_data)
+{
+	
+}
+
+char	*check_parsing_status_and_advance(char *line, t_parser_data *parser_data, t_map_data *map_data)
 {
 	if (parser_data->graphic_data_parsed == false)
 		error_handler(parser_data, map_data, GRAPHIC_DATA_INCOMPLETE);
-	if (!line) //looping more here?
-		error_handler(parser_data, map_data, NO_MAP_FOUND);
-}
-
-char	*cub_strdup(const char *line)
-{
-	int     i;
-	char	*line_cpy;
-
-	i = 0;
-	line_cpy = ft_calloc(1, ft_strlen(line) + 1);
-	if (line_cpy == NULL)
-		return (NULL);
-	while (line[i] != '\0' && line[i] != '\n')
+	while (line && is_empty_line(line) == true)
 	{
-		line_cpy[i] = line[i];
-		i++;
+		free(line);
+		line = get_next_line(parser_data->map_fd);
 	}
-	return (line_cpy);
+	if (!line)
+		error_handler(parser_data, map_data, NO_MAP_FOUND);
+	return (line);
 }
 
 void	parse_graphic_data(char *line, t_parser_data *parser_data, t_map_data *map_data)
 {
-	char	*line_cpy;
-	int		scanner_idx;
 	t_type	type;
 
-	line_cpy = cub_strdup(line);
-	if (line_cpy == NULL)
-		error_handler(parser_data, map_data, PARSER_MALLOC_ERROR);
-	scanner_idx = 0;
-	type = catch_type(line, &scanner_idx);
+	type = catch_type(line, &parser_data->scanner_idx); // to be implemented
 	if (type >= NORTH && type <= WEST)
-		parse_texture(type, line, &scanner_idx);
+		parse_texture(type, line, parser_data, map_data); // to be implemented
 	else if (type == FLOOR || type == CEILING)
-		parse_rgb(type, line, &scanner_idx);	
-}
-
-bool	check_if_graphic_data_parsed(t_parser_data *parser_data, t_map_data *map_data)
-{
-	if (map_data->wall[NORTH] != NULL && \
-	map_data->wall[EAST] != NULL && \
-	map_data->wall[SOUTH] != NULL && \
-	map_data->wall[WEST] != NULL && \
-	map_data->floor_color != -1 && \
-	map_data->ceiling_color != -1)
+		parse_rgb(type, line, parser_data, map_data); // to be implemented
+	else
 	{
-		parser_data->graphic_data_parsed = true;
-		return (true);
-	}
-	return (false);
+		free(line);
+		error_handler(parser_data, map_data, INVALID_DATA);
+	}	
 }
 
 t_parser_exit_code	parser(t_map_data *map_data, const char *path)
@@ -81,19 +65,12 @@ t_parser_exit_code	parser(t_map_data *map_data, const char *path)
 		error_handler(&parser_data, map_data, EMPTY_FILE);
 	while (line && check_if_graphic_data_parsed(&parser_data, map_data) != true)
 	{
-		if (line[0] == '\0')
-			continue ;
-		parse_graphic_data(line, &parser_data, map_data);
+		if (is_empty_line(line) == false)
+			parse_graphic_data(line, &parser_data, map_data);
+		free(line);
 		line = get_next_line(parser_data.map_fd);
 	}
-	check_parsing_status(line, &parser_data, map_data);
+	line = check_parsing_status_and_advance(line, &parser_data, map_data);
+	parse_map(line, &parser_data, map_data);
+	// free before finishing parser
 }
-	
-// have to pick up the keywords for each
-// after all graphic data is parsed, parse the map
-// parse_map(parser_data, map_data);
-// allocate, free, reallocate ** space, copy the buffer
-// before copying the buffer check if the string contains only the allowed character
-
-// copy the map as a square 2d array
-// check if the map is valid
