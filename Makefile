@@ -6,7 +6,7 @@
 #    By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/18 16:25:15 by eunskim          ###   ########.fr        #
+#    Updated: 2023/08/25 22:54:32 by eunskim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,12 +44,24 @@ FRAMEWORKS  := -framework Cocoa -framework OpenGL -framework IOKit
 
 SRC_DIR     := src/
 SRC         := \
-main.c \
-test.c
+main.c
 SRCS = $(addprefix $(SRC_DIR),$(SRC))
 
-OBJ_DIR = obj/
+OBJ_DIR = obj/$(SRC_DIR)
 OBJS = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
+
+# SRC_DIR_PARSER	:= parser/
+# SRC_PARSER      := \
+# parser.c \
+# parser_2.c \
+# parser_utils.c \
+# parser_utilse_2.c \
+# parser_error.c \
+# parser_free.c
+# SRCS_PARSER = $(addprefix $(SRC_DIR_PARSER),$(SRC_PARSER))
+
+# OBJ_DIR_PARSER = obj/$(SRC_DIR_PARSER)
+# OBJS_PARSER = $(patsubst $(SRC_DIR_PARSER)%.c,$(OBJ_DIR_PARSER)%.o,$(SRCS_PARSER))
 
 #//= Make Rules =//#
 all: libmlx libft libgnl $(NAME)

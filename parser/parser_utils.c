@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:08:20 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/23 18:45:23 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/25 21:13:48 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ bool	check_if_graphic_data_parsed(t_parser_data *parser_data, t_map_data *map_da
 	return (false);
 }
 
-void	open_map_file(const char *path, int map_fd)
+void	open_map_file(const char *path, int *map_fd)
 {
-	map_fd = open(path, O_RDONLY); 
-	if (map_fd == -1)
+	*map_fd = open(path, O_RDONLY); 
+	if (*map_fd == -1)
 	{
 		ft_putstr_fd("Error\nFailed to open a file.\n", 2);
 		exit(OPEN_ERROR);
@@ -79,8 +79,8 @@ void	init_data(t_map_data *map_data, t_parser_data *parser_data)
 	map_data->map = NULL;
 	parser_data->map_fd = 0;
 	parser_data->scanner_idx = 0;
+	parser_data->texture_path = NULL;
 	parser_data->graphic_data_parsed = false;
 	parser_data->player_cnt = 0;
 	parser_data->tmp_map = NULL;
-	
 }

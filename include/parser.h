@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:59:10 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/22 22:29:49 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/25 22:47:25 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,20 @@
 # include "libft.h"
 # include "get_next_line.h"
 
+# define WHITESPACES " \t\v\f\r"
+
 typedef enum e_parser_exit_code
 {
 	PARSER_SUCCESS,
 	PARSER_MALLOC_ERROR,
 	OPEN_ERROR,
 	EMPTY_FILE,
-	DATA_AMBIGUITY,
+	INVALID_DATA,
 	BAD_TEXTURE_EXTENSION,
+	TEXTURE_OPEN_ERROR,
 	BAD_TEXTURE_SIZE,
+	DATA_AMBIGUITY,
+	TEXTURE_NOT_LOADED,
 	BAD_RGB,
 	GRAPHIC_DATA_INCOMPLETE,
 	NO_MAP_FOUND,
@@ -49,13 +54,17 @@ typedef enum e_type
 	SOUTH,
 	WEST,
 	FLOOR,
-	CEILING
+	CEILING,
+	ERROR
 }	t_type;
 
 typedef struct s_parser_data
 {
 	int		map_fd;
+	int		scanner_idx;
+	char	*texture_path;
 	bool 	graphic_data_parsed;
+	int		player_cnt;
 	char	**tmp_map;
 }	t_parser_data;
 
