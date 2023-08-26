@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:08:20 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/26 15:07:37 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/26 17:01:49 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_empty_line(char *line)
 	i = 0;
 	while (line[i] && ft_strchr(WHITESPACES, line[i]) != 0)
 		i++;
-	if (line[i] != '\0')
+	if (line[i] != '\0' && line[i] != '\n')
 		return (false);
 	return (true);
 }
@@ -46,15 +46,16 @@ bool	check_if_graphic_data_parsed(t_parser_data *parser_data, t_map_data *map_da
 	if (map_data->wall[NORTH] != NULL && \
 	map_data->wall[EAST] != NULL && \
 	map_data->wall[SOUTH] != NULL && \
-	map_data->wall[WEST] != NULL && \
-	map_data->floor_color != -1 && \
-	map_data->ceiling_color != -1)
+	map_data->wall[WEST] != NULL)
 	{
 		parser_data->graphic_data_parsed = true;
 		return (true);
 	}
 	return (false);
 }
+
+	// map_data->floor_color != -1 && \
+	// map_data->ceiling_color != -1)
 
 void	open_map_file(const char *path, int *map_fd)
 {

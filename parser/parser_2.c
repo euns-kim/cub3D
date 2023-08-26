@@ -6,15 +6,13 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 21:04:53 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/26 14:10:05 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/26 19:06:58 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-// don't forget to free the line, when error exiting
-
-// void	parse_rgb(t_type type, char *line, t_parser_data *parser_data, t_map_data *map_data)
+// t_parser_exit_code	parse_rgb(t_type type, char *line, t_parser_data *parser_data, t_map_data *map_data)
 // {
 	
 // }
@@ -24,6 +22,7 @@ t_parser_exit_code	parse_texture(t_type type, char *line, t_parser_data *parser_
 	t_parser_exit_code	exit_code;
 	int					tmp_fd;
 
+	parser_data->scanner_idx += 2;
 	exit_code = string_slicer_ws(line, parser_data);
 	if (exit_code != PARSER_SUCCESS)
 		return (exit_code);
@@ -48,17 +47,17 @@ t_type	catch_type(char *line, int *idx)
 	*idx = 0;
 	while (line[*idx] && ft_strchr(WHITESPACES, line[*idx]) != 0)
 		(*idx)++;
-	if (line[(*idx)++] == 'N' && line[(*idx)++] == 'O')
+	if (line[*idx] == 'N' && line[*idx + 1] == 'O')
 		return (NORTH);
-	else if (line[(*idx)++] == 'E' && line[(*idx)++] == 'A')
+	else if (line[*idx] == 'E' && line[*idx + 1] == 'A')
 		return (EAST);	
-	else if (line[(*idx)++] == 'S' && line[(*idx)++] == 'O')
+	else if (line[*idx] == 'S' && line[*idx + 1] == 'O')
 		return (SOUTH);
-	else if (line[(*idx)++] == 'W' && line[(*idx)++] == 'E')
+	else if (line[*idx] == 'W' && line[*idx + 1] == 'E')
 		return (WEST);
-	else if (line[(*idx)++] == 'F')
+	else if (line[*idx] == 'F')
 		return (FLOOR);
-	else if (line[(*idx)++] == 'C')
+	else if (line[*idx] == 'C')
 		return (CEILING);
 	else
 		return (ERROR);
