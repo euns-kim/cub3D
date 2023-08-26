@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 17:15:55 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/26 17:58:29 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/26 19:34:23 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 
-t_render_exit_code	render_error_print(t_cub_exit_code render_error_code, mlx_t *mlx)
+t_render_exit_code	render_error_print(t_render_exit_code render_error_code)
 {
 	if (render_error_code == MLX_CANNOT_INIT)
 	{
@@ -23,7 +23,7 @@ t_render_exit_code	render_error_print(t_cub_exit_code render_error_code, mlx_t *
 		return (render_error_code);
 	}
 	else if (render_error_code == TEXTURE_CANNOT_LOAD)
-		printf("Error: cannot load the texture from file\n");
+		printf("Error\n: cannot load the texture from file\n");
 	else if (render_error_code == IMG_CANNOT_CREATE)
 		printf("Error: cannot create image\n");
 	else if (render_error_code == IMG_CANNOT_CONVERT_FROM_TEXTURE)
@@ -36,7 +36,7 @@ t_render_exit_code	render_error_print(t_cub_exit_code render_error_code, mlx_t *
 	return (render_error_code);
 }
 
-void	quit(t_cub *data, t_cub_exit_code render_exit_code)
+void	quit(t_cub *data, t_render_exit_code render_exit_code)
 {
 
 	// free_map(data->map_data);//do I need to free??

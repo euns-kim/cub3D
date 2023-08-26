@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:32:22 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/26 15:05:15 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/26 19:21:37 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,18 @@ void	cast_ray(t_ray *rays, int worldMap[mapHeight][mapWidth], t_player player, \
 	}
 }
 
-int	main(void)
-{
-	t_cub		data;
+// int	main(void)
+// {
+// 	t_cub		data;
 
-	init_map_size(&(data.map_size));
-	data.player = get_initial_player_info(worldMap, data.map_size.tile_size);
-	printf("player_pos.x = %f\n", data.player.pos.x);
-	printf("player_pos.y = %f\n", data.player.pos.y);
-	printf("player_dir.x = %f\n", data.player.dir);
-	printf("player_pos_modified.x = %f\n", data.player.pos_modif.x);
-	printf("player_pos_modified.y = %f\n", data.player.pos_modif.y);
-	printf("player_dir_modified = %f\n", data.player.dir_modif);
-	printf("Below are the intersec points\n");
-	cast_ray(data.rays, worldMap, data.player, data.map_size);
-}
+// 	init_map_size(&(data.map_size));
+// 	data.player = get_initial_player_info(worldMap, data.map_size.tile_size);
+// 	printf("player_pos.x = %f\n", data.player.pos.x);
+// 	printf("player_pos.y = %f\n", data.player.pos.y);
+// 	printf("player_dir.x = %f\n", data.player.dir);
+// 	printf("player_pos_modified.x = %f\n", data.player.pos_modif.x);
+// 	printf("player_pos_modified.y = %f\n", data.player.pos_modif.y);
+// 	printf("player_dir_modified = %f\n", data.player.dir_modif);
+// 	printf("Below are the intersec points\n");
+// 	cast_ray(data.rays, worldMap, data.player, data.map_size);
+// }

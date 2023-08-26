@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/26 18:57:29 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/26 19:18:47 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@
 // # include "get_next_line.h"
 // # include "parser.h"
 # include "raycast.h"
+// # include "render.h"
 # include "hook.h"
 
 # include <stdio.h>
+# include <stdlib.h>
 
 typedef enum e_cub_exit_code
 {

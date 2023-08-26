@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_verti_line.c                                  :+:      :+:    :+:   */
+/*   render_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 16:33:48 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:47:34 by sawang           ###   ########.fr       */
+/*   Created: 2023/08/26 18:03:14 by sawang            #+#    #+#             */
+/*   Updated: 2023/08/26 19:16:46 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,13 @@
 #include "cub3D.h"
 #include "raycast.h"
 
-static void	put_pixel_improved(mlx_image_t *img, t_vec point, uint32_t color)
+int	main(void)
 {
-	if (point.x < WIDTH && point.x >= 0 && point.y >= 0 && point.y < HEIGHT)
-		mlx_put_pixel(img, point.x, point.y, color);
-}
+	t_cub				data;
+	t_render_exit_code	render_exit_code;
 
-void	draw_verti_line(mlx_image_t *g_img, double x, double y1, double y2, u_int32_t color)
-{
-	t_vec	point;
-
-	point.x = x;
-	point.y = y1;
-	while (point.y < y2)
-	{
-		put_pixel_improved(g_img, point, color);
-		point.y++;
-	}
+	init_map_size(&(data.map_size));
+	data.player = get_initial_player_info(worldMap, data.map_size.tile_size);
+	render_exit_code = start_render(&data);
+	quit(&data, render_exit_code);
 }

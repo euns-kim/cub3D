@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:41:41 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/22 23:09:06 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/26 19:21:57 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,12 @@ void	determine_intersec(t_ray *ray, int worldMap[mapHeight][mapWidth], \
 /**
  * raycast
  */
+void	cast_ray(t_ray *rays, int worldMap[mapHeight][mapWidth], t_player player, \
+	t_map_size map_size);
 
 /**
  * calculate_utils
  */
-double calc_dist(double pos_x, double intersec_x, double ray_dir);
+double	calc_dist(double pos_x, double intersec_x, double ray_dir);
 
 #endif

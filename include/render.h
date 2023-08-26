@@ -6,14 +6,14 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:57:11 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/26 17:37:25 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/26 19:20:54 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# include "cub3d.h"
+# include "cub3D.h"
 # include "raycast.h"
 
 //for draw_line function
@@ -41,9 +41,17 @@ typedef enum e_render_exit_code
 	UNKNOWN_ERROR
 }			t_render_exit_code;
 
-t_render_exit_code	render_error(t_cub_exit_code render_error_code, mlx_t *mlx);
+t_render_exit_code	render_error_print(t_render_exit_code render_error_code);
+void				quit(t_cub *data, t_render_exit_code render_exit_code);
 
 // draw vertical line
-void	draw_verti_line(mlx_image_t *g_img, double x, double y1, double y2, u_int32_t color);
+void				draw_verti_line(mlx_image_t *g_img, double x, double y1, double y2, u_int32_t color);
 
+void				draw_wall(mlx_image_t *g_img, t_map_size map_size, t_ray *rays);
+
+t_render_exit_code	start_render(t_cub *data);
+
+
+//utils
+void	*cub_memset(void *b, int c, size_t len);
 #endif
