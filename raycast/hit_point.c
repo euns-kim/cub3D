@@ -6,11 +6,11 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 22:34:03 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/22 22:34:03 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/26 14:55:06 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 #include "raycast.h"
 
 #include <stdio.h>

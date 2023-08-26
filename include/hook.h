@@ -6,14 +6,14 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:03:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/22 21:03:31 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/26 14:55:53 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HOOK_H
 # define HOOK_H
 
-# include "cub3d.h"
+# include "cub3D.h"
 
 typedef struct s_input
 {

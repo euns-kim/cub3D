@@ -6,11 +6,11 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:32:22 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/22 21:32:22 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/26 15:05:15 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 #include "raycast.h"
 
 #include <stdio.h>
@@ -45,8 +45,12 @@ void	cast_ray(t_ray *rays, int worldMap[mapHeight][mapWidth], t_player player, \
 		printf("the wall height is %f\n", rays[i].wall_height);
 		rays[i].wall_top = (HEIGHT - rays[i].wall_height) / 2; //screen coordinate
 		printf("the wall top is %f\n", rays[i].wall_top);
+		if (rays[i].wall_top < 0)
+			rays[i].wall_top = 0;
 		rays[i].wall_bottom = (HEIGHT + rays[i].wall_height) / 2; //screen coordinate
 		printf("the wall bottom is %f\n", rays[i].wall_bottom);
+		if (rays[i].wall_bottom > HEIGHT)
+			rays[i].wall_bottom = HEIGHT - 1;
 		// draw_line(player.pos_modif, intersec);
 		ray_dir -= FOV * PI / 180 / map_size.width;
 		if (ray_dir < 0)

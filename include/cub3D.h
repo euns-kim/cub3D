@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/18 21:26:22 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/26 17:50:48 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,35 @@
 #  define TILE_SIZE 64
 # endif
 
-// # include "MLX42.h"
+# include "MLX42.h"
 // # include "libft.h"
 // # include "get_next_line.h"
 // # include "parser.h"
 # include "raycast.h"
 # include "hook.h"
 
+# include <stdio.h>
+
 typedef enum e_cub_exit_code
 {
 	CUB_SUCCESS,
+	CUB_FAILURE,
 	CUB_INVALID_ARGUMENT
 }	t_cub_exit_code;
 
 typedef struct s_cub
 {
-	// mlx
-	// img for large map
-	// img for minimap
-	// img for rays in minimap
 	// t_map_data	map_data;
 	t_player	player;
+	t_input		hook_input;
+	mlx_t		*mlx;
+	mlx_image_t	*g_img_full;
 	t_map_size	map_size;
-	// t_map_size	minimap_size;
 	t_ray		rays[WIDTH];
-
-
+	// img for minimap
+	// mlx_image_t	*g_img_mini;
+	// t_map_size	minimap_size;
+	// img for rays in minimap
 }	t_cub;
 
 #endif
