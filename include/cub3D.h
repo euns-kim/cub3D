@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/26 17:50:48 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/26 18:57:29 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef enum e_cub_exit_code
 {
 	CUB_SUCCESS,
 	CUB_FAILURE,
-	CUB_INVALID_ARGUMENT
+	CUB_INVALID_ARGUMENT,
+	CUB_WRONG_EXTENSION
 }	t_cub_exit_code;
 
 typedef struct s_cub
