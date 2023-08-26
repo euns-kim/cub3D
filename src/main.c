@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:24:45 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/25 21:05:41 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/26 13:53:45 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	arg_check(int argc, char **argv)
 	}
 	if (extension_check(argv[1], ".cub") == 0)
 	{
-		ft_putstr_fd("Error\nWrong file extension. Expected a .cub file.\n", 2);
+		ft_putstr_fd("Error\nExpected a .cub file.\n", 2);
 		exit(CUB_WRONG_EXTENSION);
 	}
 }

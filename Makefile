@@ -6,7 +6,7 @@
 #    By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/25 22:54:32 by eunskim          ###   ########.fr        #
+#    Updated: 2023/08/26 15:51:15 by eunskim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,29 +39,28 @@ GNL         := $(LIBGNL_DIR)/get_next_line.a
 
 INCLUDE_DIR := include
 
-HEADERS     := -I $(INCLUDE_DIR) -I $(LIBMLX_DIR)/include/MLX42/ -I $(LIBFT_DIR)
+HEADERS     := -I $(INCLUDE_DIR) -I $(LIBMLX_DIR)/include/MLX42/ -I $(LIBFT_DIR) -I $(LIBGNL_DIR)
 FRAMEWORKS  := -framework Cocoa -framework OpenGL -framework IOKit
 
 SRC_DIR     := src/
 SRC         := \
 main.c
-SRCS = $(addprefix $(SRC_DIR),$(SRC))
 
-OBJ_DIR = obj/$(SRC_DIR)
-OBJS = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
+SRC_DIR_PARSER	:= parser/
+SRC_PARSER      := \
+parser.c \
+parser_2.c \
+parser_utils.c \
+parser_utils_2.c \
+parser_error.c \
+parser_free.c
 
-# SRC_DIR_PARSER	:= parser/
-# SRC_PARSER      := \
-# parser.c \
-# parser_2.c \
-# parser_utils.c \
-# parser_utilse_2.c \
-# parser_error.c \
-# parser_free.c
-# SRCS_PARSER = $(addprefix $(SRC_DIR_PARSER),$(SRC_PARSER))
+SRCS := $(addprefix $(SRC_DIR),$(SRC))
+SRCS_PARSER := $(addprefix $(SRC_DIR_PARSER),$(SRC_PARSER))
 
-# OBJ_DIR_PARSER = obj/$(SRC_DIR_PARSER)
-# OBJS_PARSER = $(patsubst $(SRC_DIR_PARSER)%.c,$(OBJ_DIR_PARSER)%.o,$(SRCS_PARSER))
+OBJ_DIR = obj/
+OBJS := $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)$(SRC_DIR)%.o,$(SRCS))
+OBJS += $(patsubst $(SRC_DIR_PARSER)%.c,$(OBJ_DIR)$(SRC_DIR_PARSER)%.o,$(SRCS_PARSER))
 
 #//= Make Rules =//#
 all: libmlx libft libgnl $(NAME)
@@ -76,10 +75,14 @@ libgnl:
 	@$(MAKE) -C $(LIBGNL_DIR)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(MLX42) $(LIBFT) $(GNL) $(FRAMEWORKS) -o $(NAME) && \
+	@$(CC) $(CFLAGS) $(OBJS) $(MLX42) $(LIBFT) $(GNL) -lglfw $(FRAMEWORKS) -o $(NAME) && \
 	echo "$(BLUE)Compilation of $(CYAN)>>$(NAME)<<$(RESET)$(BLUE) successful!$(RESET)"
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+$(OBJ_DIR)$(SRC_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
+
+$(OBJ_DIR)$(SRC_DIR_PARSER)%.o: $(SRC_DIR_PARSER)%.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 

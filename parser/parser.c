@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:57:35 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/25 22:32:12 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/26 15:08:39 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 // and more ...
 
 // check if the map is valid at the end
-void	parse_map(char *line, t_parser_data *parser_data, t_map_data *map_data)
-{
+// void	parse_map(char *line, t_parser_data *parser_data, t_map_data *map_data)
+// {
 	
-}
+// }
 
 char	*check_parsing_status_and_advance(char *line, t_parser_data *parser_data, t_map_data *map_data)
 {
@@ -42,11 +42,12 @@ void	parse_graphic_data(char *line, t_parser_data *parser_data, t_map_data *map_
 	t_type				type;
 	t_parser_exit_code	exit_code;
 
+	exit_code = PARSER_SUCCESS;
 	type = catch_type(line, &parser_data->scanner_idx);
 	if (type >= NORTH && type <= WEST)
 		exit_code = parse_texture(type, line, parser_data, map_data);
-	else if (type == FLOOR || type == CEILING)
-		exit_code = parse_rgb(type, line, parser_data, map_data);
+	// else if (type == FLOOR || type == CEILING)
+	// 	exit_code = parse_rgb(type, line, parser_data, map_data);
 	else
 	{
 		free(line);
@@ -77,6 +78,7 @@ t_parser_exit_code	parser(t_map_data *map_data, const char *path)
 		line = get_next_line(parser_data.map_fd);
 	}
 	line = check_parsing_status_and_advance(line, &parser_data, map_data);
-	parse_map(line, &parser_data, map_data); // to be implemented
-	// free before finishing parser
+	// parse_map(line, &parser_data, map_data); // to be implemented
+	parser_free_before_exit(&parser_data, map_data); // for test
+	return (PARSER_SUCCESS);
 }

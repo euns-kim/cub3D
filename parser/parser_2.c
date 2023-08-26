@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 21:04:53 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/25 22:48:04 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/26 14:10:05 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 // don't forget to free the line, when error exiting
 
-void	parse_rgb(t_type type, char *line, t_parser_data *parser_data, t_map_data *map_data)
-{
+// void	parse_rgb(t_type type, char *line, t_parser_data *parser_data, t_map_data *map_data)
+// {
 	
-}
+// }
 
 t_parser_exit_code	parse_texture(t_type type, char *line, t_parser_data *parser_data, t_map_data *map_data)
 {

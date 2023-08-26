@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:08:20 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/25 21:13:48 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/26 15:07:37 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	open_map_file(const char *path, int *map_fd)
 	}
 }
 
-void	init_data(t_map_data *map_data, t_parser_data *parser_data)
+void	init_data(t_parser_data *parser_data, t_map_data *map_data)
 {
 	map_data->wall[NORTH] = NULL;
 	map_data->wall[EAST] = NULL;
