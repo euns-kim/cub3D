@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:32:22 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:21:37 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/28 22:43:47 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,25 @@ void	cast_ray(t_ray *rays, int worldMap[mapHeight][mapWidth], t_player player, \
 	while (i < map_size.width)
 	{
 		rays[i].ray_dir = ray_dir;
-		printf("ray_dir = %f\t", rays[i].ray_dir);
+		// printf("ray_dir = %f\t", rays[i].ray_dir);
 		// printf("ray_dir in degree = %f\n", ray_dir * 180 / PI);
 		determine_intersec(&rays[i], worldMap, map_size.tile_size, player);
-		printf("the hit point at the map is [%d][%d]\n", \
-			(int)(rays[i].intersec.y / map_size.tile_size), (int)(rays[i].intersec.x / map_size.tile_size));
+		// printf("the hit point at the map is [%d][%d]\n", \
+		// 	(int)(rays[i].intersec.y / map_size.tile_size), (int)(rays[i].intersec.x / map_size.tile_size));
 		// calculate distance
 		rays[i].dist = calc_dist(player.pos_modif.x, rays[i].intersec.x, ray_dir) * cos(player.dir_modif - rays[i].ray_dir);
-		printf("the distance is %f\n", rays[i].dist);
+		// printf("the distance is %f\n", rays[i].dist);
 		//calculate wall height
 		rays[i].wall_height = map_size.tile_size / rays[i].dist * DIST_TO_PROJ;
-		printf("the wall height is %f\n", rays[i].wall_height);
+		// printf("the wall height is %f\n", rays[i].wall_height);
 		rays[i].wall_top = (HEIGHT - rays[i].wall_height) / 2; //screen coordinate
-		printf("the wall top is %f\n", rays[i].wall_top);
-		if (rays[i].wall_top < 0)
-			rays[i].wall_top = 0;
+		// printf("the wall top is %f\n", rays[i].wall_top);
+		// if (rays[i].wall_top < 0)
+		// 	rays[i].wall_top = 0;
 		rays[i].wall_bottom = (HEIGHT + rays[i].wall_height) / 2; //screen coordinate
-		printf("the wall bottom is %f\n", rays[i].wall_bottom);
-		if (rays[i].wall_bottom > HEIGHT)
-			rays[i].wall_bottom = HEIGHT - 1;
+		// printf("the wall bottom is %f\n", rays[i].wall_bottom);
+		// if (rays[i].wall_bottom > HEIGHT)
+		// 	rays[i].wall_bottom = HEIGHT - 1;
 		// draw_line(player.pos_modif, intersec);
 		ray_dir -= FOV * PI / 180 / map_size.width;
 		if (ray_dir < 0)

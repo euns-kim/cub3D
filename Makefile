@@ -6,7 +6,7 @@
 #    By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/26 19:19:27 by sawang           ###   ########.fr        #
+#    Updated: 2023/08/28 21:40:25 by sawang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME        := cub3D
 CC          := cc
 CFLAGS      := -Wextra -Wall -Werror
 CFLAGS      += -Wunreachable-code -Ofast
-#CFLAGS      += -g3 -fsanitize=address
+CFLAGS      += -g3 -fsanitize=address
 
 LIBMLX_DIR  := lib/MLX42
 MLX42       := $(LIBMLX_DIR)/libmlx42.a
@@ -46,14 +46,14 @@ SRC_DIR     := src/
 SRC         := \
 render_test.c
 
-SRC_DIR_PARSER	:= parser/
-SRC_PARSER      := \
-parser.c \
-parser_2.c \
-parser_utils.c \
-parser_utils_2.c \
-parser_error.c \
-parser_free.c
+# SRC_DIR_PARSER	:= parser/
+# SRC_PARSER      := \
+# parser.c \
+# parser_2.c \
+# parser_utils.c \
+# parser_utils_2.c \
+# parser_error.c \
+# parser_free.c
 
 SRC_DIR_RAYCAST	:= raycast/
 SRC_RAYCAST     := \
@@ -66,19 +66,19 @@ mock_map.c
 SRC_DIR_RENDER	:= render/
 SRC_RENDER      := \
 draw_verti_line.c \
-draw_wall.c \
+draw.c \
 render_error_handler.c \
 render.c \
 render_utils.c
 
 SRCS := $(addprefix $(SRC_DIR),$(SRC))
-SRCS_PARSER := $(addprefix $(SRC_DIR_PARSER),$(SRC_PARSER))
+# SRCS_PARSER := $(addprefix $(SRC_DIR_PARSER),$(SRC_PARSER))
 SRCS_RAYCAST := $(addprefix $(SRC_DIR_RAYCAST),$(SRC_RAYCAST))
 SRCS_RENDER := $(addprefix $(SRC_DIR_RENDER),$(SRC_RENDER))
 
 OBJ_DIR = obj/
 OBJS := $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)$(SRC_DIR)%.o,$(SRCS))
-OBJS += $(patsubst $(SRC_DIR_PARSER)%.c,$(OBJ_DIR)$(SRC_DIR_PARSER)%.o,$(SRCS_PARSER))
+# OBJS += $(patsubst $(SRC_DIR_PARSER)%.c,$(OBJ_DIR)$(SRC_DIR_PARSER)%.o,$(SRCS_PARSER))
 OBJS += $(patsubst $(SRC_DIR_RAYCAST)%.c,$(OBJ_DIR)$(SRC_DIR_RAYCAST)%.o,$(SRCS_RAYCAST))
 OBJS += $(patsubst $(SRC_DIR_RENDER)%.c,$(OBJ_DIR)$(SRC_DIR_RENDER)%.o,$(SRCS_RENDER))
 

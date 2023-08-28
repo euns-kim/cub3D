@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:41:41 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:21:57 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/28 17:09:36 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_map_size
 	int	width;
 	int	tile_size;
 }				t_map_size;
-
 
 typedef struct s_ray
 {

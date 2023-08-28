@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/26 19:18:47 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/28 21:27:41 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "MLX42.h"
 // # include "libft.h"
 // # include "get_next_line.h"
-// # include "parser.h"
+# include "parser.h"
 # include "raycast.h"
 // # include "render.h"
 # include "hook.h"
@@ -46,7 +46,7 @@ typedef enum e_cub_exit_code
 
 typedef struct s_cub
 {
-	// t_map_data	map_data;
+	t_map_data	map_data;
 	t_player	player;
 	t_input		hook_input;
 	mlx_t		*mlx;

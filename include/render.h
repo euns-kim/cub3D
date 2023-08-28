@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:57:11 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:20:54 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/28 21:28:18 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "cub3D.h"
 # include "raycast.h"
+
+#ifndef BPP
+# define BPP 4
+#endif
 
 //for draw_line function
 // typedef struct s_delta
@@ -47,7 +51,7 @@ void				quit(t_cub *data, t_render_exit_code render_exit_code);
 // draw vertical line
 void				draw_verti_line(mlx_image_t *g_img, double x, double y1, double y2, u_int32_t color);
 
-void				draw_wall(mlx_image_t *g_img, t_map_size map_size, t_ray *rays);
+void				draw(mlx_image_t *g_img, t_map_size map_size, t_ray *rays, t_map_data map_data);
 
 t_render_exit_code	start_render(t_cub *data);
 

@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 17:15:55 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:34:23 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/28 22:05:59 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_render_exit_code	render_error_print(t_render_exit_code render_error_code)
 
 void	quit(t_cub *data, t_render_exit_code render_exit_code)
 {
-
 	// free_map(data->map_data);//do I need to free??
 	if (render_exit_code == MLX_CANNOT_INIT)
 		exit (CUB_FAILURE);
@@ -46,13 +45,24 @@ void	quit(t_cub *data, t_render_exit_code render_exit_code)
 	{
 		mlx_delete_image(data->mlx, data->g_img_full);
 		// mlx_delete_texture(data->mlx, texture);
+		// delete 4 textures!!!
 		mlx_terminate(data->mlx);
 		exit (CUB_SUCCESS);
 	}
 	else
 	{
 		// delete image??
+		if (data->g_img_full)
+			mlx_delete_image(data->mlx, data->g_img_full);
 		// delete texture??
+		if (data->map_data.wall[NORTH])
+			mlx_delete_texture(data->map_data.wall[NORTH]);
+		if (data->map_data.wall[EAST])
+			mlx_delete_texture(data->map_data.wall[EAST]);
+		if (data->map_data.wall[SOUTH])
+			mlx_delete_texture(data->map_data.wall[SOUTH]);
+		if (data->map_data.wall[WEST])
+			mlx_delete_texture(data->map_data.wall[WEST]);
 		mlx_terminate(data->mlx);
 		exit (CUB_FAILURE);
 	}

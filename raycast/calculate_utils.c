@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 23:51:26 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/26 14:55:03 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/26 20:01:31 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <math.h>
 
-double calc_dist(double pos_x, double intersec_x, double ray_dir)
+double	calc_dist(double pos_x, double intersec_x, double ray_dir)
 {
 	return (fabs((pos_x - intersec_x) / cos(ray_dir)));
 }
