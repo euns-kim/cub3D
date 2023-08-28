@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:08:20 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/26 17:01:49 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/28 18:15:39 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ bool	check_if_graphic_data_parsed(t_parser_data *parser_data, t_map_data *map_da
 	if (map_data->wall[NORTH] != NULL && \
 	map_data->wall[EAST] != NULL && \
 	map_data->wall[SOUTH] != NULL && \
-	map_data->wall[WEST] != NULL)
+	map_data->wall[WEST] != NULL && \
+	map_data->floor_color != -1 && \
+	map_data->ceiling_color != -1)
 	{
 		parser_data->graphic_data_parsed = true;
 		return (true);
@@ -54,8 +56,6 @@ bool	check_if_graphic_data_parsed(t_parser_data *parser_data, t_map_data *map_da
 	return (false);
 }
 
-	// map_data->floor_color != -1 && \
-	// map_data->ceiling_color != -1)
 
 void	open_map_file(const char *path, int *map_fd)
 {
@@ -81,6 +81,9 @@ void	init_data(t_parser_data *parser_data, t_map_data *map_data)
 	parser_data->map_fd = 0;
 	parser_data->scanner_idx = 0;
 	parser_data->texture_path = NULL;
+	parser_data->rgb_scanner.red_start = NULL;
+	parser_data->rgb_scanner.green_start = NULL;
+	parser_data->rgb_scanner.blue_start = NULL;
 	parser_data->graphic_data_parsed = false;
 	parser_data->player_cnt = 0;
 	parser_data->tmp_map = NULL;

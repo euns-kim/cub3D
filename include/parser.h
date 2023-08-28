@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:59:10 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/26 17:01:22 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/28 18:16:12 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,25 @@ typedef enum e_type
 	ERROR
 }	t_type;
 
+typedef struct s_rgb
+{
+	char	*red_start;
+	int		red_len;
+	char	*green_start;
+	int		green_len;
+	char	*blue_start;
+	int		blue_len;
+}	t_rgb;
+
 typedef struct s_parser_data
 {
 	int		map_fd;
 	int		scanner_idx;
 	char	*texture_path;
+	t_rgb	rgb_scanner;
+	int32_t	red;
+	int32_t	green;
+	int32_t	blue;
 	bool 	graphic_data_parsed;
 	int		player_cnt;
 	char	**tmp_map;
@@ -86,6 +100,8 @@ char				*check_parsing_status_and_advance(char *line, t_parser_data *parser_data
 // parser_2.c
 t_type				catch_type(char *line, int *idx);
 t_parser_exit_code	parse_texture(t_type type, char *line, t_parser_data *parser_data, t_map_data *map_data);
+t_parser_exit_code	parse_rgb(t_type type, char *line, t_parser_data *parser_data, t_map_data *map_data);
+t_parser_exit_code	scan_rgb(char *line, int *idx, t_rgb *rgb_scanner);
 
 // parser_utils.c
 void				init_data(t_parser_data *parser_data, t_map_data *map_data);
@@ -96,7 +112,10 @@ bool				is_empty_line(char *line);
 
 // parser_utils_2.c
 int					extension_check(const char *path, const char *extension);
-t_parser_exit_code	string_slicer_ws(char *line, t_parser_data *parser_data);
+t_parser_exit_code	texture_slicer(char *line, t_parser_data *parser_data);
+t_parser_exit_code	scan_color_code(char *line, int *idx, char *color_start, int *color_len);
+t_parser_exit_code	get_rgb(t_type type, t_rgb *rgb_scanner, t_map_data *map_data);
+int32_t				cub_color_atoi(char *start, int len);
 
 // parser_error.c
 void				parser_free_before_exit(t_parser_data *parser_data, t_map_data *map_data);

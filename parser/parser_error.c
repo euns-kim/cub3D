@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:06:31 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/26 14:07:28 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/28 18:18:56 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	error_handler(t_parser_data *parser_data, \
 	else if (error == TEXTURE_OPEN_ERROR)
 		ft_putstr_fd("Texture not readable.\n", 2);
 	else if (error == BAD_TEXTURE_SIZE)
-		ft_putstr_fd("Expected a square-sized texture.\n", 2);
+		ft_putstr_fd("Expected a 64x64 texture.\n", 2);
 	else if (error == DATA_AMBIGUITY)
 		ft_putstr_fd("Duplicated information.\n", 2);
 	else if (error == TEXTURE_NOT_LOADED)
