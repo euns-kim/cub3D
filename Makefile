@@ -6,7 +6,7 @@
 #    By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/28 21:40:25 by sawang           ###   ########.fr        #
+#    Updated: 2023/08/29 15:46:42 by sawang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,5 +127,6 @@ fclean: clean
 	@rm -f $(GNL)
 
 re: fclean all
+
 
 .PHONY: all, clean, fclean, re, libmlx, libft, libgnl

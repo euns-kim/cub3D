@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 22:34:03 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/26 14:55:06 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/29 16:52:29 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vec	check_horiz_intersec(int worldMap[mapHeight][mapWidth], \
 	if (ray_dir == 0 || ray_dir == PI)
 		return (intersec);
 	if (ray_dir > 0 && ray_dir < PI)//face up
-		intersec.y = floor(player.pos_modif.y / tile_size) * tile_size - 1; //round down
+		intersec.y = floor(player.pos_modif.y / tile_size) * tile_size - 0.0001; //round down
 	else
 		intersec.y = floor(player.pos_modif.y / tile_size) * tile_size + tile_size; // round down
 	intersec.x = player.pos_modif.x + (player.pos_modif.y - intersec.y) / \
@@ -85,7 +85,7 @@ t_vec	check_verti_intersec(int worldMap[mapHeight][mapWidth], \
 	if (ray_dir == PI / 2 || ray_dir == 3 * PI / 2)
 		return (intersec);
 	if (ray_dir > PI / 2 && ray_dir < 3 * PI / 2) //facing left
-		intersec.x = floor(player.pos_modif.x / tile_size) * tile_size - 1; //round down
+		intersec.x = floor(player.pos_modif.x / tile_size) * tile_size - 0.0001; //round down
 	else
 		intersec.x = floor(player.pos_modif.x / tile_size) * tile_size + tile_size; //round down
 	intersec.y = player.pos_modif.y + (player.pos_modif.x - intersec.x) * \
@@ -123,6 +123,10 @@ void	determine_intersec(t_ray *ray, int worldMap[mapHeight][mapWidth], int tile_
 		ray->intersec = horiz_intersec;
 	else if (calc_dist(player.pos_modif.x, horiz_intersec.x, ray->ray_dir) < \
 		calc_dist(player.pos_modif.x, verti_intersec.x, ray->ray_dir))
+	// else if (sqrt(pow(player.pos_modif.x - horiz_intersec.x, 2) + \
+	// 	pow(player.pos_modif.y - horiz_intersec.y, 2)) < \
+	// 	sqrt(pow(player.pos_modif.x - verti_intersec.x, 2) + \
+	// 	pow(player.pos_modif.y - verti_intersec.y, 2)))
 	{
 		ray->side = 0; //hit the horizontal wall. checking NWSE with player.dir_modif or ray_dir ??
 		ray->intersec = horiz_intersec;
