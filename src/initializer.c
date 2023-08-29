@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:37:43 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 20:30:32 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/29 21:24:00 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ t_vec	get_player_pos(int i, int j)
 
 	pos.x = i;
 	pos.y = j;
-	// printf("pos.x = %f\n", pos.x);
-	// printf("pos.y = %f\n", pos.y);
 	return (pos);
 }
 
@@ -42,20 +40,13 @@ double	get_player_dir(int i, int j)
 	return (dir);
 }
 
-t_player	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
-	int tile_size)
+void	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
+	int tile_size, t_player *player)
 {
 	int			i;
 	int			j;
-	t_player	player;
 
 	j = 0;
-	player.pos.x = 0;
-	player.pos.y = 0;
-	player.dir = 0;
-	player.pos_modif.x = 0;
-	player.pos_modif.y = 0;
-	player.dir_modif = 0;
 	while (j < mapHeight)
 	{
 		i = 0;
@@ -64,18 +55,16 @@ t_player	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
 			if (worldMap[j][i] == 'N' || worldMap[j][i] == 'S' || \
 				worldMap[j][i] == 'E' || worldMap[j][i] == 'W')
 			{
-				player.pos = get_player_pos(i, j);
-				player.dir = get_player_dir(i, j);
-				player.pos_modif.x = (player.pos.x + 0.5) * tile_size;
-				player.pos_modif.y = (player.pos.y + 0.5) * tile_size;
-				player.dir_modif = player.dir;
-				return (player);
+				player->pos = get_player_pos(i, j);
+				player->dir = get_player_dir(i, j);
+				player->pos_modif.x = (player->pos.x + 0.5) * tile_size;
+				player->pos_modif.y = (player->pos.y + 0.5) * tile_size;
+				player->dir_modif = player->dir;
 			}
 			i++;
 		}
 		j++;
 	}
-	return (player);
 }
 
 // void	init_minimap_size(t_map_size *minimap_size)

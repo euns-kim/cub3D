@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:06:31 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/26 14:07:28 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/29 21:55:08 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	error_handler(t_parser_data *parser_data, \
 	exit(error);
 }
 
-void	parser_free_before_exit(t_parser_data *parser_data, t_map_data *map_data)
+void	parser_free_before_exit(t_parser_data *parser_data, \
+t_map_data *map_data)
 {
 	close(parser_data->map_fd);
 	free_p(parser_data->texture_path);

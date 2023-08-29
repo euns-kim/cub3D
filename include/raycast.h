@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:41:41 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/28 17:09:36 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/29 20:57:21 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,6 @@ typedef struct s_ray
 // 	t_minimap	minimap;
 // 	t_ray		ray[WIDTH];
 // }				t_data;
-
-/**
- * initializations
- */
-
-t_vec	get_player_pos(int i, int j);
-double	get_player_dir(int i, int j);
-t_player	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
-	int tile_size);
-void	init_minimap_size(t_map_size *minimap_size);
-void	init_map_size(t_map_size *map_size);
 
 /**
  * hit_point calculations

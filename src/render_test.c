@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 18:03:14 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 20:34:44 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/29 21:54:43 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,22 @@ static void	get_map_data(t_map_data *map_data)
 	map_data->wall[1] = "/Users/sawang/Documents/cub3d/walls/oceanE_sq.png";
 	map_data->wall[2] = "/Users/sawang/Documents/cub3d/walls/oceanS_sq.png";
 	map_data->wall[3] = "/Users/sawang/Documents/cub3d/walls/oceanW_sq.png";
-	printf("map_data->wall[0] = %s\n", map_data->wall[0]);
 }
 
+void	init_data(t_cub *data)
+{
+	get_map_data(&(data->map_data));
+	init_map_size(&(data->map_size));
+	get_initial_player_info(worldMap, data->map_size.tile_size, \
+		&(data->player));
+}
 
 int	main(void)
 {
 	t_cub				data;
 	t_render_exit_code	render_exit_code;
 
-	get_map_data(&(data.map_data));
-	init_map_size(&(data.map_size));
-	data.player = get_initial_player_info(worldMap, data.map_size.tile_size);
-	// init_data(&data); for the above three
+	init_data(&data);
 	render_exit_code = start_render(&data);
 	quit(&data, render_exit_code);
 }

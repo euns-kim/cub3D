@@ -6,7 +6,7 @@
 #    By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/29 15:46:42 by sawang           ###   ########.fr        #
+#    Updated: 2023/08/29 20:55:38 by sawang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ FRAMEWORKS  := -framework Cocoa -framework OpenGL -framework IOKit
 
 SRC_DIR     := src/
 SRC         := \
+initializer.c \
 render_test.c
 
 # SRC_DIR_PARSER	:= parser/
@@ -59,7 +60,6 @@ SRC_DIR_RAYCAST	:= raycast/
 SRC_RAYCAST     := \
 calculate_utils.c \
 hit_point.c \
-initializer.c \
 raycast.c \
 mock_map.c
 

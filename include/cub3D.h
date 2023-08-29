@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 20:24:49 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/29 21:16:06 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef enum e_cub_exit_code
 typedef struct s_cub
 {
 	t_map_data		map_data;
-	t_player		player;
 	t_map_size		map_size;
+	t_player		player;
 	mlx_t			*mlx;
 	mlx_image_t		*g_img_full;
 	mlx_texture_t	*wall_tex[4];
@@ -59,5 +59,16 @@ typedef struct s_cub
 	// t_map_size	minimap_size;
 	// img for rays in minimap
 }	t_cub;
+
+/**
+ * initializations
+ */
+
+t_vec	get_player_pos(int i, int j);
+double	get_player_dir(int i, int j);
+void	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
+	int tile_size, t_player *player);
+// void	init_minimap_size(t_map_size *minimap_size);
+void	init_map_size(t_map_size *map_size);
 
 #endif
