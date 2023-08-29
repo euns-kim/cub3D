@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:37:43 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 16:22:49 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/29 20:30:32 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_vec	get_player_pos(int i, int j)
 
 	pos.x = i;
 	pos.y = j;
-	printf("pos.x = %f\n", pos.x);
-	printf("pos.y = %f\n", pos.y);
+	// printf("pos.x = %f\n", pos.x);
+	// printf("pos.y = %f\n", pos.y);
 	return (pos);
 }
 
@@ -78,15 +78,15 @@ t_player	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
 	return (player);
 }
 
-void	init_minimap_size(t_map_size *minimap_size)
-{
-	minimap_size->height = HEIGHT;
-	minimap_size->tile_size = HEIGHT / mapHeight;
-	minimap_size->width = minimap_size->tile_size * mapWidth;
-	printf("minimap_height = %d\n", minimap_size->height);
-	printf("minimap_width = %d\n", minimap_size->width);
-	printf("minimap_tile_size = %d\n", minimap_size->tile_size);
-}
+// void	init_minimap_size(t_map_size *minimap_size)
+// {
+// 	minimap_size->height = HEIGHT;
+// 	minimap_size->tile_size = HEIGHT / mapHeight;
+// 	minimap_size->width = minimap_size->tile_size * mapWidth;
+// 	printf("minimap_height = %d\n", minimap_size->height);
+// 	printf("minimap_width = %d\n", minimap_size->width);
+// 	printf("minimap_tile_size = %d\n", minimap_size->tile_size);
+// }
 
 void	init_map_size(t_map_size *s_map_size)
 {

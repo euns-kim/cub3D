@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:32:22 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 16:14:45 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/29 18:51:37 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	cast_ray(t_ray *rays, int worldMap[mapHeight][mapWidth], t_player player, \
 	{
 		rays[i].ray_dir = ray_dir;
 		// printf("ray_dir = %f\t", rays[i].ray_dir);
-		printf("ray_dir in degree = %f\t", ray_dir * 180 / PI);
+		// printf("ray_dir in degree = %f\t", ray_dir * 180 / PI);
 		determine_intersec(&rays[i], worldMap, map_size.tile_size, player);
-		printf("the hit point at the map is [%d][%d]\t", \
-			(int)(rays[i].intersec.y / map_size.tile_size), (int)(rays[i].intersec.x / map_size.tile_size));
-		printf("the hit point is (%f, %f)\n", rays[i].intersec.y, rays[i].intersec.x);
+		// printf("the hit point at the map is [%d][%d]\t", \
+		// 	(int)(rays[i].intersec.y / map_size.tile_size), (int)(rays[i].intersec.x / map_size.tile_size));
+		// printf("the hit point is (%f, %f)\n", rays[i].intersec.y, rays[i].intersec.x);
 		// calculate distance
 		rays[i].dist = calc_dist(player.pos_modif.x, rays[i].intersec.x, ray_dir) * cos(player.dir_modif - rays[i].ray_dir);
 		// printf("the distance is %f\n", rays[i].dist);

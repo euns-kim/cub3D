@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:59:10 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/28 17:06:26 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/29 20:35:33 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,19 @@ typedef struct s_parser_data
 	int		map_fd;
 	int		scanner_idx;
 	char	*texture_path;
-	bool 	graphic_data_parsed;
+	bool	graphic_data_parsed;
 	int		player_cnt;
 	char	**tmp_map;
 }	t_parser_data;
 
 typedef struct s_map_data
 {
-	mlx_texture_t*	wall[4];
-	int32_t			floor_color;
-	int32_t			ceiling_color;
-	uint32_t		map_width;
-	uint32_t		map_height;
-	char			**map;
+	char		*wall[4];
+	int32_t		floor_color;
+	int32_t		ceiling_color;
+	uint32_t	map_width;
+	uint32_t	map_height;
+	char		**map;
 }	t_map_data;
 
 // // parser.c
