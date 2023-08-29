@@ -6,22 +6,11 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:57:35 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 15:06:00 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/29 20:54:22 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-// allocate, free, reallocate ** space, copy the buffer
-// before copying new buffer check if the string contains only the allowed character
-// and if the characters other than 1 neighbour space -> UNCLOSED_MAP
-// and more ...
-
-// check if the map is valid at the end
-// void	parse_map(char *line, t_parser_data *parser_data, t_map_data *map_data)
-// {
-	
-// }
 
 char	*check_parsing_status_and_advance(char *line, t_parser_data *parser_data, t_map_data *map_data)
 {
@@ -104,8 +93,8 @@ t_parser_exit_code	parser(t_map_data *map_data, const char *path)
 		line = get_next_line(parser_data.map_fd);
 	}
 	line = check_parsing_status_and_advance(line, &parser_data, map_data);
-	// parse_map(line, &parser_data, map_data); // to be implemented
+	parse_map(line, &parser_data, map_data); // to be implemented
 	parser_free_before_exit(&parser_data, map_data); // for test
-	printf("Parsed successfully!"); // for test
+	printf("Parsed successfully!\n"); // for test
 	return (PARSER_SUCCESS);
 }

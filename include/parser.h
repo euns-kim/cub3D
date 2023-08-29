@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:59:10 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 14:59:07 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/29 21:06:50 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef enum e_parser_exit_code
 	BAD_RGB,
 	GRAPHIC_DATA_INCOMPLETE,
 	NO_MAP_FOUND,
-	EMPTY_LINE_IN_MAP,
 	INVALID_ELEMENT,
 	MULTIPLE_PLAYER,
 	UNCLOSED_MAP
@@ -83,8 +82,8 @@ typedef struct s_map_data
 	char*		wall[4];
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
-	uint32_t	map_width;
-	uint32_t	map_height;
+	uint32_t	width;
+	uint32_t	height;
 	char		**map;
 }	t_map_data;
 
@@ -101,20 +100,26 @@ t_parser_exit_code	texture_slicer(char *line, t_parser_data *parser_data);
 // parser_rgb.c
 t_parser_exit_code	parse_rgb(t_type type, char *line, t_parser_data *parser_data, t_map_data *map_data);
 t_parser_exit_code	scan_rgb(char *line, int *idx, t_rgb *rgb_scanner);
-
-// parser_utils.c
-void				init_data(t_parser_data *parser_data, t_map_data *map_data);
-void				open_map_file(const char *path, int *map_fd);
-bool				check_if_graphic_data_parsed(t_parser_data parser_data, t_map_data *map_data);
-char				*cub_strdup(const char *line);
-bool				is_empty_line(char *line);
-
-// parser_utils_2.c
-int					extension_check(const char *path, const char *extension);
-
 t_parser_exit_code	scan_color_code(char *line, int *idx, char **color_start, int *color_len);
 t_parser_exit_code	get_rgb(t_type type, t_rgb *rgb_scanner, t_parser_data *parser_data, t_map_data *map_data);
 int32_t				cub_color_atoi(char *start, int len);
+
+// parser_map.c
+void				parse_map(char *line, t_parser_data *parser_data, t_map_data *map_data);
+t_parser_exit_code parse_tmp_map(char *line, t_parser_data *parser_data, t_map_data *map_data);
+
+// parser_map_utils.c
+char				*cub_strdup(const char *line);
+t_parser_exit_code	line_check(char *line, t_parser_data *parser_data);
+char				**extend_string_array(char **param, int line_cnt);
+t_parser_exit_code	check_map_parsing_status(char *line, t_parser_data *parser_data);
+
+// parser_utils.c
+void				init_data(t_parser_data *parser_data, t_map_data *map_data);
+int					extension_check(const char *path, const char *extension);
+void				open_map_file(const char *path, int *map_fd);
+bool				is_empty_line(char *line);
+bool				check_if_graphic_data_parsed(t_parser_data parser_data, t_map_data *map_data);
 
 // parser_error.c
 void				parser_free_before_exit(t_parser_data *parser_data, t_map_data *map_data);
@@ -123,5 +128,7 @@ void				error_handler(t_parser_data *parser_data, \
 
 // parser_free.c
 void				free_p(void *p);
+void				free_str_arr(char **arr);
+// void				parser_free(t_parser_data *parser_data, t_map_data *map_data);
 
 #endif

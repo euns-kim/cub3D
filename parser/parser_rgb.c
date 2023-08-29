@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:03:21 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 15:07:14 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/29 17:27:31 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_parser_exit_code	scan_color_code(char *line, int *idx, char **color_start, int
 	while (line[*idx] && ft_strchr(WHITESPACES, line[*idx]) != 0)
 		(*idx)++;
 	*color_start = line + *idx;
-	printf("color_start: %s", *color_start);
+	printf("%s", *color_start);
 	while (ft_strchr(WHITESPACES, line[*idx]) == 0 && line[*idx] != ',')
 	{
 		if (ft_isdigit(line[*idx]) == 0)
@@ -72,7 +72,7 @@ t_parser_exit_code	scan_color_code(char *line, int *idx, char **color_start, int
 		(*idx)++;
 	}
 	*color_len = (int) (line + *idx - *color_start);
-	printf("color_len: %d\n", *color_len);
+	printf("%d\n", *color_len);
 	return (PARSER_SUCCESS);
 }
 

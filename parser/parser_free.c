@@ -6,11 +6,32 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 22:36:12 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/25 22:36:25 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/29 21:06:43 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+// void	parser_free(t_parser_data *parser_data, t_map_data *map_data)
+// {
+// 	close(parser_data->map_fd);
+// 	free_p(parser_data->texture_path);
+// }
+
+void	free_str_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	if (arr == NULL || *arr == NULL)
+		return ;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
 
 void	free_p(void *p)
 {
