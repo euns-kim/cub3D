@@ -1,0 +1,8 @@
+NO ./texture/ocean_sq_64.png
+SO ./texture/ocean1_sq_64.png
+WE ./texture/ocean2_sq_64.png
+EA ./texture/ocean3_sq_64.png
+
+
+F 220,100,0
+C 225,30,0

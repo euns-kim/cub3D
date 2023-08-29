@@ -6,7 +6,7 @@
 #    By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/26 15:51:15 by eunskim          ###   ########.fr        #
+#    Updated: 2023/08/29 13:06:40 by eunskim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME        := cub3D
 CC          := cc
 CFLAGS      := -Wextra -Wall -Werror
 CFLAGS      += -Wunreachable-code -Ofast
-#CFLAGS      += -g3 -fsanitize=address
+CFLAGS      += -g3 -fsanitize=address
 
 LIBMLX_DIR  := lib/MLX42
 MLX42       := $(LIBMLX_DIR)/libmlx42.a
@@ -49,7 +49,8 @@ main.c
 SRC_DIR_PARSER	:= parser/
 SRC_PARSER      := \
 parser.c \
-parser_2.c \
+parser_texture.c \
+parser_rgb.c \
 parser_utils.c \
 parser_utils_2.c \
 parser_error.c \

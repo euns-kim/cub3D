@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:57:35 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/28 18:10:04 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/29 14:05:03 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@
 
 char	*check_parsing_status_and_advance(char *line, t_parser_data *parser_data, t_map_data *map_data)
 {
-	if (parser_data->graphic_data_parsed == false)
+	if (check_if_graphic_data_parsed(map_data) == false)
+	{
+		free(line);
 		error_handler(parser_data, map_data, GRAPHIC_DATA_INCOMPLETE);
+	}
 	while (line && is_empty_line(line) == true)
 	{
 		free(line);
@@ -62,6 +65,27 @@ void	parse_graphic_data(char *line, t_parser_data *parser_data, t_map_data *map_
 	}
 }
 
+t_type	catch_type(char *line, int *idx)
+{
+	*idx = 0;
+	while (line[*idx] && ft_strchr(WHITESPACES, line[*idx]) != 0)
+		(*idx)++;
+	if (line[*idx] == 'N' && line[*idx + 1] == 'O')
+		return (NORTH);
+	else if (line[*idx] == 'E' && line[*idx + 1] == 'A')
+		return (EAST);	
+	else if (line[*idx] == 'S' && line[*idx + 1] == 'O')
+		return (SOUTH);
+	else if (line[*idx] == 'W' && line[*idx + 1] == 'E')
+		return (WEST);
+	else if (line[*idx] == 'F')
+		return (FLOOR);
+	else if (line[*idx] == 'C')
+		return (CEILING);
+	else
+		return (ERROR);
+}
+
 t_parser_exit_code	parser(t_map_data *map_data, const char *path)
 {
 	t_parser_data		parser_data;
@@ -72,7 +96,7 @@ t_parser_exit_code	parser(t_map_data *map_data, const char *path)
 	line = get_next_line(parser_data.map_fd);
 	if (!line)
 		error_handler(&parser_data, map_data, EMPTY_FILE);
-	while (line && check_if_graphic_data_parsed(&parser_data, map_data) != true)
+	while (line && check_if_graphic_data_parsed(map_data) != true)
 	{
 		if (is_empty_line(line) == false)
 			parse_graphic_data(line, &parser_data, map_data);
@@ -80,6 +104,7 @@ t_parser_exit_code	parser(t_map_data *map_data, const char *path)
 		line = get_next_line(parser_data.map_fd);
 	}
 	line = check_parsing_status_and_advance(line, &parser_data, map_data);
+
 	// parse_map(line, &parser_data, map_data); // to be implemented
 	parser_free_before_exit(&parser_data, map_data); // for test
 	printf("parsed successfully"); // for test
