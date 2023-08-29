@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:08:20 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 14:06:15 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/29 14:57:53 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ char	*cub_strdup(const char *line)
 	return (line_cpy);
 }
 
-bool	check_if_graphic_data_parsed(t_map_data *map_data)
+bool	check_if_graphic_data_parsed(t_parser_data parser_data, t_map_data *map_data)
 {
 	if (map_data->wall[NORTH] != NULL && \
 	map_data->wall[EAST] != NULL && \
 	map_data->wall[SOUTH] != NULL && \
 	map_data->wall[WEST] != NULL && \
-	map_data->floor_color != -1 && \
-	map_data->ceiling_color != -1)
+	parser_data.floor_parsed == true && \
+	parser_data.ceiling_parsed == true)
 		return (true);
 	return (false);
 }
@@ -80,6 +80,8 @@ void	init_data(t_parser_data *parser_data, t_map_data *map_data)
 	parser_data->rgb_scanner.red_start = NULL;
 	parser_data->rgb_scanner.green_start = NULL;
 	parser_data->rgb_scanner.blue_start = NULL;
+	parser_data->floor_parsed = false;
+	parser_data->ceiling_parsed = false;
 	parser_data->player_cnt = 0;
 	parser_data->tmp_map = NULL;
 }

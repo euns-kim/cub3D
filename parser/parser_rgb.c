@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:03:21 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 13:53:13 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/29 15:07:14 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int32_t	cub_color_atoi(char *start, int len)
 	return (sum);
 }
 
-t_parser_exit_code	get_rgb(t_type type, t_rgb *rgb_scanner, t_map_data *map_data)
+t_parser_exit_code	get_rgb(t_type type, t_rgb *rgb_scanner, t_parser_data *parser_data, t_map_data *map_data)
 {
 	int32_t red;
 	int32_t	green;
 	int32_t	blue;
-	int32_t color;
+	uint32_t color;
 
 	red = cub_color_atoi(rgb_scanner->red_start, rgb_scanner->red_len);
 	green = cub_color_atoi(rgb_scanner->green_start, rgb_scanner->green_len);
@@ -44,11 +44,17 @@ t_parser_exit_code	get_rgb(t_type type, t_rgb *rgb_scanner, t_map_data *map_data
 	if (red > 255 || red < 0 || green > 255 || green < 0 || blue > 255 || blue < 0)
 		return (BAD_RGB);
 	color = ((red << 24) | (green << 16) | (blue << 8) | 0xFF);
-	printf("color: %x\n", color);
+	printf("resulted color: %x\n", color);
 	if (type == FLOOR)
+	{
 		map_data->floor_color = color;
+		parser_data->floor_parsed = true;
+	}
 	else if (type == CEILING)
+	{
 		map_data->ceiling_color = color;
+		parser_data->ceiling_parsed = true;
+	}	
 	return (PARSER_SUCCESS);
 }
 
@@ -58,7 +64,7 @@ t_parser_exit_code	scan_color_code(char *line, int *idx, char **color_start, int
 	while (line[*idx] && ft_strchr(WHITESPACES, line[*idx]) != 0)
 		(*idx)++;
 	*color_start = line + *idx;
-	printf("%s", *color_start);
+	printf("color_start: %s", *color_start);
 	while (ft_strchr(WHITESPACES, line[*idx]) == 0 && line[*idx] != ',')
 	{
 		if (ft_isdigit(line[*idx]) == 0)
@@ -66,7 +72,7 @@ t_parser_exit_code	scan_color_code(char *line, int *idx, char **color_start, int
 		(*idx)++;
 	}
 	*color_len = (int) (line + *idx - *color_start);
-	printf("%d\n", *color_len);
+	printf("color_len: %d\n", *color_len);
 	return (PARSER_SUCCESS);
 }
 
@@ -98,7 +104,7 @@ t_parser_exit_code	parse_rgb(t_type type, char *line, t_parser_data *parser_data
 	exit_code = scan_rgb(line, &parser_data->scanner_idx, &parser_data->rgb_scanner);
 	if (exit_code != PARSER_SUCCESS)
 		return (exit_code);
-	exit_code = get_rgb(type, &parser_data->rgb_scanner, map_data);
+	exit_code = get_rgb(type, &parser_data->rgb_scanner, parser_data, map_data);
 	if (exit_code != PARSER_SUCCESS)
 		return (exit_code);
 	return (PARSER_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:59:10 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 14:05:24 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/29 14:59:07 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_parser_data
 	int		scanner_idx;
 	char	*texture_path;
 	t_rgb	rgb_scanner;
+	bool	floor_parsed;
+	bool	ceiling_parsed;
 	int		player_cnt;
 	char	**tmp_map;
 }	t_parser_data;
@@ -79,8 +81,8 @@ typedef struct s_parser_data
 typedef struct s_map_data
 {
 	char*		wall[4];
-	int32_t		floor_color;
-	int32_t		ceiling_color;
+	uint32_t	floor_color;
+	uint32_t	ceiling_color;
 	uint32_t	map_width;
 	uint32_t	map_height;
 	char		**map;
@@ -103,7 +105,7 @@ t_parser_exit_code	scan_rgb(char *line, int *idx, t_rgb *rgb_scanner);
 // parser_utils.c
 void				init_data(t_parser_data *parser_data, t_map_data *map_data);
 void				open_map_file(const char *path, int *map_fd);
-bool				check_if_graphic_data_parsed(t_map_data *map_data);
+bool				check_if_graphic_data_parsed(t_parser_data parser_data, t_map_data *map_data);
 char				*cub_strdup(const char *line);
 bool				is_empty_line(char *line);
 
@@ -111,7 +113,7 @@ bool				is_empty_line(char *line);
 int					extension_check(const char *path, const char *extension);
 
 t_parser_exit_code	scan_color_code(char *line, int *idx, char **color_start, int *color_len);
-t_parser_exit_code	get_rgb(t_type type, t_rgb *rgb_scanner, t_map_data *map_data);
+t_parser_exit_code	get_rgb(t_type type, t_rgb *rgb_scanner, t_parser_data *parser_data, t_map_data *map_data);
 int32_t				cub_color_atoi(char *start, int len);
 
 // parser_error.c

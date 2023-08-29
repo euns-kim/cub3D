@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:02:55 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 13:41:02 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/29 15:08:06 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_parser_exit_code	texture_slicer(char *line, t_parser_data *parser_data)
 	while (ft_strchr(WHITESPACES, line[end]) == 0)
 		end++;
 	if (end - start < 4)
-		return (GRAPHIC_DATA_INCOMPLETE);
+		return (INVALID_DATA);
 	if (is_empty_line(line + end) == false)
 		return (INVALID_DATA);
 	free_p((void *) parser_data->texture_path);
@@ -38,7 +38,6 @@ t_parser_exit_code	texture_slicer(char *line, t_parser_data *parser_data)
 		parser_data->texture_path[i] = line[start + i];
 		i++;
 	}
-	printf("%s\n", parser_data->texture_path);
 	return (PARSER_SUCCESS);
 }
 
