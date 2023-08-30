@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 18:03:14 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 21:54:43 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/30 16:38:26 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_data(t_cub *data)
 	init_map_size(&(data->map_size));
 	get_initial_player_info(worldMap, data->map_size.tile_size, \
 		&(data->player));
+	init_input(&(data->hook_input));
 }
 
 int	main(void)

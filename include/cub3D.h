@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 21:16:06 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/30 17:14:01 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,9 @@ void	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
 	int tile_size, t_player *player);
 // void	init_minimap_size(t_map_size *minimap_size);
 void	init_map_size(t_map_size *map_size);
+void	init_input(t_input *input);
+
+//hook function, should it be here?
+void	hook(t_cub *data);
 
 #endif

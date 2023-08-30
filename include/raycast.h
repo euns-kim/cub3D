@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:41:41 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 20:57:21 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/30 17:11:32 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #  define PI 3.1415
 # endif
 
-#ifndef FOV
-# define FOV 60
-#endif
+# ifndef FOV
+#  define FOV 60
+# endif
 
 # ifndef DIST_TO_PROJ
 #  define DIST_TO_PROJ WIDTH / 2 / tan(FOV / 2 * PI / 180)

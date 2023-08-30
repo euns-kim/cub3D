@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:46:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 20:44:24 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/30 17:23:29 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ t_render_exit_code	wall_is_square(mlx_texture_t *wall_tex[])
 	return (RENDER_SUCCESS);
 }
 
-static void	render(mlx_image_t *g_img, t_cub *data, keys_t key)
+void	render(mlx_image_t *g_img, t_cub *data, keys_t key)
 {
-	(void)key;
-	// updata_hook_input(data->hook_input, key);
+	update_hook_input(data->player, &data->hook_input, key);
 	// cub_memset(g_img->pixels, 0, g_img->width * g_img->height * sizeof(int));
-	// update_player(data->player, data->hook_input);
+	update_player(&data->player, data->hook_input);
 	cast_ray(data->rays, worldMap, data->player, data->map_size);
 	draw(g_img, data->rays, data->map_data, data->wall_tex);
 }
@@ -63,7 +62,7 @@ t_render_exit_code	start_render(t_cub *data)
 	render(data->g_img_full, data, 0);
 	// mlx_scroll_hook(frame->mlx, (mlx_scrollfunc) scroll_hook, frame);
 	// mlx_key_hook(frame->mlx, (mlx_keyfunc) key_hook, frame);
-	// mlx_loop_hook((*frame).mlx, (void (*)(void *))hook, frame);
+	mlx_loop_hook(data->mlx, (void (*)(void *))hook, data);
 	mlx_loop(data->mlx);
 	return (RENDER_SUCCESS);
 }

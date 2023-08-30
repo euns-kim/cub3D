@@ -6,7 +6,7 @@
 #    By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/29 20:55:38 by sawang           ###   ########.fr        #
+#    Updated: 2023/08/30 17:06:31 by sawang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,16 +71,23 @@ render_error_handler.c \
 render.c \
 render_utils.c
 
+SRC_DIR_HOOK	:= hook/
+SRC_HOOK		:= \
+hooks.c \
+update_player.c
+
 SRCS := $(addprefix $(SRC_DIR),$(SRC))
 # SRCS_PARSER := $(addprefix $(SRC_DIR_PARSER),$(SRC_PARSER))
 SRCS_RAYCAST := $(addprefix $(SRC_DIR_RAYCAST),$(SRC_RAYCAST))
 SRCS_RENDER := $(addprefix $(SRC_DIR_RENDER),$(SRC_RENDER))
+SRCS_HOOK := $(addprefix $(SRC_DIR_HOOK),$(SRC_HOOK))
 
 OBJ_DIR = obj/
 OBJS := $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)$(SRC_DIR)%.o,$(SRCS))
 # OBJS += $(patsubst $(SRC_DIR_PARSER)%.c,$(OBJ_DIR)$(SRC_DIR_PARSER)%.o,$(SRCS_PARSER))
 OBJS += $(patsubst $(SRC_DIR_RAYCAST)%.c,$(OBJ_DIR)$(SRC_DIR_RAYCAST)%.o,$(SRCS_RAYCAST))
 OBJS += $(patsubst $(SRC_DIR_RENDER)%.c,$(OBJ_DIR)$(SRC_DIR_RENDER)%.o,$(SRCS_RENDER))
+OBJS += $(patsubst $(SRC_DIR_HOOK)%.c,$(OBJ_DIR)$(SRC_DIR_HOOK)%.o,$(SRCS_HOOK))
 
 #//= Make Rules =//#
 all: libmlx libft libgnl $(NAME)

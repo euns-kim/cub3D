@@ -6,12 +6,13 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:37:43 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 21:24:00 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/30 17:08:12 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "raycast.h"
+#include "hook.h"
 
 #include <stdio.h>
 
@@ -82,4 +83,11 @@ void	init_map_size(t_map_size *s_map_size)
 	s_map_size->height = HEIGHT;
 	s_map_size->width = WIDTH;
 	s_map_size->tile_size = TILE_SIZE;
+}
+
+void	init_input(t_input *input)
+{
+	input->angle = 0;
+	input->hori_delta = 0;
+	input->vert_delta = 0;
 }
