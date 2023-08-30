@@ -6,13 +6,14 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:08:20 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 20:51:11 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/30 18:22:57 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-bool	check_if_graphic_data_parsed(t_parser_data parser_data, t_map_data *map_data)
+bool	check_if_graphic_data_parsed(t_parser_data parser_data, \
+		t_map_data *map_data)
 {
 	if (map_data->wall[NORTH] != NULL && \
 	map_data->wall[EAST] != NULL && \
@@ -38,7 +39,7 @@ bool	is_empty_line(char *line)
 
 void	open_map_file(const char *path, int *map_fd)
 {
-	*map_fd = open(path, O_RDONLY); 
+	*map_fd = open(path, O_RDONLY);
 	if (*map_fd == -1)
 	{
 		ft_putstr_fd("Error\nFailed to open a file.\n", 2);
@@ -49,7 +50,7 @@ void	open_map_file(const char *path, int *map_fd)
 int	extension_check(const char *path, const char *extension)
 {
 	size_t	path_len;
-	
+
 	path_len = ft_strlen(path);
 	if (path_len < 4)
 		return (0);

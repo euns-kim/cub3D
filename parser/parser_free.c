@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 22:36:12 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 21:06:43 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/30 17:26:36 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // {
 // 	close(parser_data->map_fd);
 // 	free_p(parser_data->texture_path);
+// free_str_arr(parser_data->tmp_map);
 // }
 
 void	free_str_arr(char **arr)

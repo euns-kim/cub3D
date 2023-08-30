@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:06:31 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 21:04:28 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/30 18:13:40 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ void	error_handler(t_parser_data *parser_data, \
 	exit(error);
 }
 
-void	parser_free_before_exit(t_parser_data *parser_data, t_map_data *map_data)
+void	parser_free_before_exit(t_parser_data *parser_data, \
+		t_map_data *map_data)
 {
 	close(parser_data->map_fd);
 	free_p(parser_data->texture_path);
+	free_str_arr(parser_data->tmp_map);
 	free_p(map_data->wall[NORTH]);
 	free_p(map_data->wall[EAST]);
 	free_p(map_data->wall[SOUTH]);
 	free_p(map_data->wall[WEST]);
-	free_str_arr(parser_data->tmp_map);
+	free_str_arr(map_data->map);
 }

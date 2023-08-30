@@ -6,7 +6,7 @@
 #    By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/29 21:07:19 by eunskim          ###   ########.fr        #
+#    Updated: 2023/08/30 17:07:33 by eunskim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ parser_texture.c \
 parser_rgb.c \
 parser_map.c \
 parser_map_utils.c \
+parser_map_validity.c \
 parser_utils.c \
 parser_error.c \
 parser_free.c

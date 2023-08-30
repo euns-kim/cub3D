@@ -6,13 +6,30 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 20:52:13 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 21:09:16 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/30 18:17:04 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_parser_exit_code	check_map_parsing_status(char *line, t_parser_data *parser_data)
+void	get_max_width_map(char **tmp_map, int *max_width)
+{
+	int	i;
+	int	width;
+
+	i = 0;
+	width = 0;
+	while (tmp_map[i])
+	{
+		width = ft_strlen(tmp_map[i]);
+		if (width > *max_width)
+			*max_width = width;
+		i++;
+	}
+}
+
+t_parser_exit_code	check_map_parsing_status(char *line, \
+					t_parser_data *parser_data)
 {
 	while (line && is_empty_line(line) == true)
 	{
@@ -68,7 +85,7 @@ t_parser_exit_code	line_check(char *line, t_parser_data *parser_data)
 
 char	*cub_strdup(const char *line)
 {
-	int     i;
+	int		i;
 	char	*line_cpy;
 
 	i = 0;

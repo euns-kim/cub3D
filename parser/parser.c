@@ -6,13 +6,14 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:57:35 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 20:54:22 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/30 18:13:14 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	*check_parsing_status_and_advance(char *line, t_parser_data *parser_data, t_map_data *map_data)
+char	*check_parsing_status_and_advance(char *line, \
+		t_parser_data *parser_data, t_map_data *map_data)
 {
 	if (check_if_graphic_data_parsed(*parser_data, map_data) == false)
 	{
@@ -29,7 +30,8 @@ char	*check_parsing_status_and_advance(char *line, t_parser_data *parser_data, t
 	return (line);
 }
 
-void	parse_graphic_data(char *line, t_parser_data *parser_data, t_map_data *map_data)
+void	parse_graphic_data(char *line, \
+		t_parser_data *parser_data, t_map_data *map_data)
 {
 	t_type				type;
 	t_parser_exit_code	exit_code;
@@ -62,7 +64,7 @@ t_type	catch_type(char *line, int *idx)
 	if (line[*idx] == 'N' && line[*idx + 1] == 'O')
 		return (NORTH);
 	else if (line[*idx] == 'E' && line[*idx + 1] == 'A')
-		return (EAST);	
+		return (EAST);
 	else if (line[*idx] == 'S' && line[*idx + 1] == 'O')
 		return (SOUTH);
 	else if (line[*idx] == 'W' && line[*idx + 1] == 'E')
@@ -77,8 +79,8 @@ t_type	catch_type(char *line, int *idx)
 
 t_parser_exit_code	parser(t_map_data *map_data, const char *path)
 {
-	t_parser_data		parser_data;
-	char				*line;
+	t_parser_data	parser_data;
+	char			*line;
 
 	init_data(&parser_data, map_data);
 	open_map_file(path, &parser_data.map_fd);
@@ -93,7 +95,7 @@ t_parser_exit_code	parser(t_map_data *map_data, const char *path)
 		line = get_next_line(parser_data.map_fd);
 	}
 	line = check_parsing_status_and_advance(line, &parser_data, map_data);
-	parse_map(line, &parser_data, map_data); // to be implemented
+	parse_map(line, &parser_data, map_data);
 	parser_free_before_exit(&parser_data, map_data); // for test
 	printf("Parsed successfully!\n"); // for test
 	return (PARSER_SUCCESS);
