@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:46:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/30 17:23:29 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/30 18:24:56 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	render(mlx_image_t *g_img, t_cub *data, keys_t key)
 {
 	update_hook_input(data->player, &data->hook_input, key);
 	// cub_memset(g_img->pixels, 0, g_img->width * g_img->height * sizeof(int));
-	update_player(&data->player, data->hook_input);
+	update_player(&data->player, &data->hook_input);
 	cast_ray(data->rays, worldMap, data->player, data->map_size);
 	draw(g_img, data->rays, data->map_data, data->wall_tex);
 }
