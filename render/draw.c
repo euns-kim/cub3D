@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:20:51 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 21:59:26 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/29 22:31:55 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ int	determine_tex_y(t_ray ray, mlx_texture_t *texture_to_draw, int img_j)
 void	draw_texture(mlx_image_t *g_img, double x, t_ray ray, mlx_texture_t *wall_tex[])
 {
 	t_type			wall_type;
-	mlx_texture_t	*texture_to_draw;
+	mlx_texture_t	*tex_to_draw;
 	int				tex_x;
 	int				tex_y;
 	double			img_j;
 
 	wall_type = determine_wall(ray.ray_dir, ray.side);
-	texture_to_draw = wall_tex[wall_type];
+	tex_to_draw = wall_tex[wall_type];
 	// if (wall_type)
 	// {
 	// 	printf("wall_type = %d\n", wall_type);
@@ -99,23 +99,23 @@ void	draw_texture(mlx_image_t *g_img, double x, t_ray ray, mlx_texture_t *wall_t
 	// 	printf("ray.wall_bottom = %f\n", ray.wall_bottom);
 	// }
 	// printf("texture_to_draw = %p\n", texture_to_draw);
-	tex_x = determine_tex_x(ray.intersec, wall_type, texture_to_draw);
+	tex_x = determine_tex_x(ray.intersec, wall_type, tex_to_draw);
 	img_j = 0;
 	while (img_j < HEIGHT)
 	{
 		//inside determine_tex_y, check if the wall_top < 0 and wall_bottom > HEIGHT
 		if (img_j >= ray.wall_top && img_j < ray.wall_bottom)
 		{
-			tex_y = determine_tex_y(ray, texture_to_draw, img_j);
+			tex_y = determine_tex_y(ray, tex_to_draw, img_j);
 			// set the image pixel
 			g_img->pixels[((uint32_t)img_j * WIDTH + (uint32_t)x) * BPP] = \
-				texture_to_draw->pixels[(tex_y * texture_to_draw->width + tex_x) * BPP];
+				tex_to_draw->pixels[(tex_y * tex_to_draw->width + tex_x) * BPP];
 			g_img->pixels[((uint32_t)img_j * WIDTH + (uint32_t)x) * BPP + 1] = \
-				texture_to_draw->pixels[(tex_y * texture_to_draw->width + tex_x) * BPP + 1];
+				tex_to_draw->pixels[(tex_y * tex_to_draw->width + tex_x) * BPP + 1];
 			g_img->pixels[((uint32_t)img_j * WIDTH + (uint32_t)x) * BPP + 2] = \
-				texture_to_draw->pixels[(tex_y * texture_to_draw->width + tex_x) * BPP + 2];
+				tex_to_draw->pixels[(tex_y * tex_to_draw->width + tex_x) * BPP + 2];
 			g_img->pixels[((uint32_t)img_j * WIDTH + (uint32_t)x) * BPP + 3] = \
-				texture_to_draw->pixels[(tex_y * texture_to_draw->width + tex_x) * BPP + 3];
+				tex_to_draw->pixels[(tex_y * tex_to_draw->width + tex_x) * BPP + 3];
 		}
 		img_j++;
 	}
