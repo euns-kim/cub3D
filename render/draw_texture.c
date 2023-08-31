@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:20:51 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/31 19:51:32 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 20:22:35 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int	determine_tex_x(t_vec intersec, t_type wall_type, \
 	double	x_scale;
 
 	x_scale = texture_to_draw->width / TILE_SIZE;
-	printf("tex_width: %u\n", texture_to_draw->width);
-	printf("x_scale: %f\n", x_scale);
 	if (wall_type == NORTH)
 		tex_x = (int)intersec.x % TILE_SIZE * x_scale;
 	else if (wall_type == SOUTH)
