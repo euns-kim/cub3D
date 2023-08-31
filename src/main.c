@@ -6,11 +6,16 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:24:45 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 18:44:36 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 14:47:39 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	check_leaks(void)
+{
+	system("leaks cub3D");
+}
 
 static void	arg_check(int argc, char **argv)
 {
@@ -31,6 +36,7 @@ int	main(int argc, char **argv)
 {
 	t_cub	data;
 
+	atexit(check_leaks);
 	arg_check(argc, argv);
 	parser(&data.map_data, argv[1]);
 	return (0);
