@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:59:10 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/31 14:53:04 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 19:37:12 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,8 @@ void				check_outer_wall(int i, int j, \
 					t_parser_data *parser_data, t_map_data *map_data);
 
 // parser_utils.c
-void				init_data(t_parser_data *parser_data, t_map_data *map_data);
+void				parser_init_data(t_parser_data *parser_data, \
+					t_map_data *map_data);
 int					extension_check(const char *path, const char *extension);
 void				open_map_file(const char *path, int *map_fd);
 bool				is_empty_line(char *line);

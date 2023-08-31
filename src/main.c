@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:24:45 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/29 18:44:36 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 19:16:14 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "render.h"
 #include "cub3D.h"
+#include "raycast.h"
 
 static void	arg_check(int argc, char **argv)
 {
@@ -27,11 +29,22 @@ static void	arg_check(int argc, char **argv)
 	}
 }
 
+void	init_data(t_cub *data)
+{
+	init_map_size(&(data->map_size));
+	get_initial_player_info(data->map_data, data->map_size.tile_size, \
+		&(data->player));
+	init_input(&(data->hook_input));
+}
+
 int	main(int argc, char **argv)
 {
-	t_cub	data;
+	t_cub				data;
+	t_render_exit_code	render_exit_code;
 
 	arg_check(argc, argv);
 	parser(&data.map_data, argv[1]);
-	return (0);
+	init_data(&data);
+	render_exit_code = start_render(&data);
+	quit(&data, render_exit_code);
 }

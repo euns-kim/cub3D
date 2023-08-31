@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:57:35 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/31 14:53:55 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 17:14:12 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_parser_exit_code	parser(t_map_data *map_data, const char *path)
 	t_parser_data	parser_data;
 	char			*line;
 
-	init_data(&parser_data, map_data);
+	parser_init_data(&parser_data, map_data);
 	open_map_file(path, &parser_data.map_fd);
 	line = get_next_line(parser_data.map_fd);
 	if (!line)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+         #
+#    By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/30 17:07:33 by eunskim          ###   ########.fr        #
+#    Updated: 2023/08/31 20:01:03 by sawang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ FRAMEWORKS  := -framework Cocoa -framework OpenGL -framework IOKit
 
 SRC_DIR     := src/
 SRC         := \
+initializer.c \
+hooks.c \
 main.c
 
 SRC_DIR_PARSER	:= parser/
@@ -58,12 +60,37 @@ parser_utils.c \
 parser_error.c \
 parser_free.c
 
+SRC_DIR_RAYCAST	:= raycast/
+SRC_RAYCAST     := \
+calculate_utils.c \
+hit_point.c \
+raycast.c
+
+SRC_DIR_RENDER	:= render/
+SRC_RENDER      := \
+check_texture.c \
+draw_verti_line.c \
+draw_texture.c \
+render_error_handler.c \
+render.c
+
+SRC_DIR_HOOK	:= hook/
+SRC_HOOK        := \
+update_player.c
+
+
 SRCS := $(addprefix $(SRC_DIR),$(SRC))
 SRCS_PARSER := $(addprefix $(SRC_DIR_PARSER),$(SRC_PARSER))
+SRCS_RAYCAST := $(addprefix $(SRC_DIR_RAYCAST),$(SRC_RAYCAST))
+SRCS_RENDER := $(addprefix $(SRC_DIR_RENDER),$(SRC_RENDER))
+SRCS_HOOK := $(addprefix $(SRC_DIR_HOOK),$(SRC_HOOK))
 
 OBJ_DIR = obj/
 OBJS := $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)$(SRC_DIR)%.o,$(SRCS))
 OBJS += $(patsubst $(SRC_DIR_PARSER)%.c,$(OBJ_DIR)$(SRC_DIR_PARSER)%.o,$(SRCS_PARSER))
+OBJS += $(patsubst $(SRC_DIR_RAYCAST)%.c,$(OBJ_DIR)$(SRC_DIR_RAYCAST)%.o,$(SRCS_RAYCAST))
+OBJS += $(patsubst $(SRC_DIR_RENDER)%.c,$(OBJ_DIR)$(SRC_DIR_RENDER)%.o,$(SRCS_RENDER))
+OBJS += $(patsubst $(SRC_DIR_HOOK)%.c,$(OBJ_DIR)$(SRC_DIR_HOOK)%.o,$(SRCS_HOOK))
 
 #//= Make Rules =//#
 all: libmlx libft libgnl $(NAME)
@@ -89,6 +116,18 @@ $(OBJ_DIR)$(SRC_DIR_PARSER)%.o: $(SRC_DIR_PARSER)%.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
+$(OBJ_DIR)$(SRC_DIR_RAYCAST)%.o: $(SRC_DIR_RAYCAST)%.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
+
+$(OBJ_DIR)$(SRC_DIR_RENDER)%.o: $(SRC_DIR_RENDER)%.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
+
+$(OBJ_DIR)$(SRC_DIR_HOOK)%.o: $(SRC_DIR_HOOK)%.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
+
 clean:
 	@rm -rf $(OBJ_DIR)
 	@$(MAKE) -C $(LIBMLX_DIR) clean
@@ -102,5 +141,6 @@ fclean: clean
 	@rm -f $(GNL)
 
 re: fclean all
+
 
 .PHONY: all, clean, fclean, re, libmlx, libft, libgnl
