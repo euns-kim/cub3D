@@ -6,7 +6,7 @@
 #    By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/31 16:54:25 by sawang           ###   ########.fr        #
+#    Updated: 2023/08/31 17:05:35 by sawang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME        := cub3D
 CC          := cc
 CFLAGS      := -Wextra -Wall -Werror
 CFLAGS      += -Wunreachable-code -Ofast
-CFLAGS      += -g3 -fsanitize=address
+#CFLAGS      += -g3 -fsanitize=address
 
 LIBMLX_DIR  := lib/MLX42
 MLX42       := $(LIBMLX_DIR)/libmlx42.a
@@ -46,16 +46,20 @@ SRC_DIR     := src/
 SRC         := \
 initializer.c \
 hooks.c \
-render_test.c
+#render_test.c
+main.c
 
-# SRC_DIR_PARSER	:= parser/
-# SRC_PARSER      := \
-# parser.c \
-# parser_2.c \
-# parser_utils.c \
-# parser_utils_2.c \
-# parser_error.c \
-# parser_free.c
+SRC_DIR_PARSER	:= parser/
+SRC_PARSER      := \
+parser.c \
+parser_texture.c \
+parser_rgb.c \
+parser_map.c \
+parser_map_utils.c \
+parser_map_validity.c \
+parser_utils.c \
+parser_error.c \
+parser_free.c
 
 SRC_DIR_RAYCAST	:= raycast/
 SRC_RAYCAST     := \
@@ -75,6 +79,8 @@ render_utils.c
 SRC_DIR_HOOK	:= hook/
 SRC_HOOK		:= \
 update_player.c
+
+
 
 SRCS := $(addprefix $(SRC_DIR),$(SRC))
 # SRCS_PARSER := $(addprefix $(SRC_DIR_PARSER),$(SRC_PARSER))
