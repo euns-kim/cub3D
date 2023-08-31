@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 17:15:55 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 21:54:56 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:55:44 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ t_render_exit_code	render_error_print(t_render_exit_code render_error_code)
 
 void	quit(t_cub *data, t_render_exit_code render_exit_code)
 {
-	// free_map(data->map_data);//free everything in map_data!!!
+	free_str_arr(data->map_data.map);
+	free_p(data->map_data.wall[NORTH]);
+	free_p(data->map_data.wall[EAST]);
+	free_p(data->map_data.wall[SOUTH]);
+	free_p(data->map_data.wall[WEST]);
 	if (data->wall_tex[NORTH])
 		mlx_delete_texture(data->wall_tex[NORTH]);
 	if (data->wall_tex[EAST])

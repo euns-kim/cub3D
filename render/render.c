@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:46:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/30 18:24:56 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 19:12:47 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,32 @@ t_render_exit_code	wall_is_square(mlx_texture_t *wall_tex[])
 	return (RENDER_SUCCESS);
 }
 
+void	draw(mlx_image_t *g_img, t_ray *rays, t_map_data map_data, \
+	mlx_texture_t *wall_tex[])
+{
+	int		i;
+	t_vec	ceiling_range;
+	t_vec	floor_range;
+
+	i = 0;
+	while (i < WIDTH)
+	{
+		ceiling_range.x = 0;
+		ceiling_range.y = rays[i].wall_top;
+		draw_verti_line(g_img, i, ceiling_range, map_data.ceiling_color);
+		draw_texture(g_img, i, rays[i], wall_tex);
+		floor_range.x = rays[i].wall_bottom;
+		floor_range.y = HEIGHT;
+		draw_verti_line(g_img, i, floor_range, map_data.floor_color);
+		i++;
+	}
+}
+
 void	render(mlx_image_t *g_img, t_cub *data, keys_t key)
 {
 	update_hook_input(data->player, &data->hook_input, key);
-	// cub_memset(g_img->pixels, 0, g_img->width * g_img->height * sizeof(int));
-	update_player(&data->player, &data->hook_input);
-	cast_ray(data->rays, worldMap, data->player, data->map_size);
+	update_player(&data->player, &data->hook_input, data->map_data);
+	cast_ray(data->rays, data->map_data, data->player, data->map_size);
 	draw(g_img, data->rays, data->map_data, data->wall_tex);
 }
 
@@ -60,8 +80,6 @@ t_render_exit_code	start_render(t_cub *data)
 	if (mlx_image_to_window(data->mlx, data->g_img_full, 0, 0))
 		return (render_error_print(IMG_CANNOT_DISPLAY));
 	render(data->g_img_full, data, 0);
-	// mlx_scroll_hook(frame->mlx, (mlx_scrollfunc) scroll_hook, frame);
-	// mlx_key_hook(frame->mlx, (mlx_keyfunc) key_hook, frame);
 	mlx_loop_hook(data->mlx, (void (*)(void *))hook, data);
 	mlx_loop(data->mlx);
 	return (RENDER_SUCCESS);

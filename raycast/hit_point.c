@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 22:34:03 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 21:53:32 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:45:39 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_vec	get_increment_x_intersec(double ray_dir, int tile_size)
 	return (increment);
 }
 
-t_vec	check_horiz_intersec(int worldMap[mapHeight][mapWidth], \
+t_vec	check_horiz_intersec(t_map_data map_data, \
 	int tilesize, t_player player, double ray_dir)
 {
 	t_vec	intersec;
@@ -46,12 +46,12 @@ t_vec	check_horiz_intersec(int worldMap[mapHeight][mapWidth], \
 	intersec.x = player.pos_modif.x + (player.pos_modif.y - intersec.y) / \
 		tan(ray_dir);
 	increment = get_increment_x_intersec(ray_dir, tilesize);
-	while ((int)(intersec.y / tilesize) < mapHeight && \
+	while ((int)(intersec.y / tilesize) < map_data.height && \
 		(int)(intersec.y / tilesize) >= 0 && \
-		(int)(intersec.x / tilesize) < mapWidth && \
+		(int)(intersec.x / tilesize) < map_data.width && \
 		(int)(intersec.x / tilesize) >= 0 && \
-		worldMap[(int)(intersec.y / tilesize)] \
-		[(int)(intersec.x / tilesize)] != 1)
+		map_data.map[(int)(intersec.y / tilesize)] \
+		[(int)(intersec.x / tilesize)] != '1')
 	{
 		intersec.x += increment.x;
 		intersec.y += increment.y;
@@ -74,7 +74,7 @@ t_vec	get_increment_y_intersec(double ray_dir, int tile_size)
 	return (increment);
 }
 
-t_vec	check_verti_intersec(int worldMap[mapHeight][mapWidth], \
+t_vec	check_verti_intersec(t_map_data map_data, \
 	int tilesize, t_player player, double ray_dir)
 {
 	t_vec	intersec;
@@ -91,12 +91,12 @@ t_vec	check_verti_intersec(int worldMap[mapHeight][mapWidth], \
 	intersec.y = player.pos_modif.y + (player.pos_modif.x - intersec.x) * \
 		tan(ray_dir);
 	increment = get_increment_y_intersec(ray_dir, tilesize);
-	while ((int)(intersec.y / tilesize) < mapHeight && \
+	while ((int)(intersec.y / tilesize) < map_data.height && \
 		(int)(intersec.y / tilesize) >= 0 && \
-		(int)(intersec.x / tilesize) < mapWidth && \
+		(int)(intersec.x / tilesize) < map_data.width && \
 		(int)(intersec.x / tilesize) >= 0 && \
-		worldMap[(int)(intersec.y / tilesize)] \
-		[(int)(intersec.x / tilesize)] != 1)
+		map_data.map[(int)(intersec.y / tilesize)] \
+		[(int)(intersec.x / tilesize)] != '1')
 	{
 		intersec.x += increment.x;
 		intersec.y += increment.y;
@@ -104,14 +104,14 @@ t_vec	check_verti_intersec(int worldMap[mapHeight][mapWidth], \
 	return (intersec);
 }
 
-void	determine_intersec(t_ray *ray, int worldMap[mapHeight][mapWidth], \
+void	determine_intersec(t_ray *ray, t_map_data map_data, \
 	int tilesize, t_player player)
 {
 	t_vec	hor_inters;
 	t_vec	ver_inters;
 
-	hor_inters = check_horiz_intersec(worldMap, tilesize, player, ray->ray_dir);
-	ver_inters = check_verti_intersec(worldMap, tilesize, player, ray->ray_dir);
+	hor_inters = check_horiz_intersec(map_data, tilesize, player, ray->ray_dir);
+	ver_inters = check_verti_intersec(map_data, tilesize, player, ray->ray_dir);
 	if (hor_inters.x == INFINITY && ver_inters.y == INFINITY)
 	{
 		ray->intersec.x = INFINITY;

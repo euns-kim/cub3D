@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:57:11 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/30 17:19:25 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 19:14:15 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ void				quit(t_cub *data, t_render_exit_code render_exit_code);
 void				draw_verti_line(mlx_image_t *g_img, double x, \
 	t_vec draw_range, u_int32_t color);
 
-void				draw(mlx_image_t *g_img, t_ray *rays, \
-	t_map_data map_data, mlx_texture_t *wall_tex[]);
+// draw texture
+void				draw_texture(mlx_image_t *g_img, double x, t_ray ray, \
+	mlx_texture_t *wall_tex[]);
 
 // render
-void	render(mlx_image_t *g_img, t_cub *data, keys_t key);
+void				render(mlx_image_t *g_img, t_cub *data, keys_t key);
 t_render_exit_code	start_render(t_cub *data);
 
 //utils

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:08:20 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/30 18:22:57 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 17:14:04 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	extension_check(const char *path, const char *extension)
 	return (0);
 }
 
-void	init_data(t_parser_data *parser_data, t_map_data *map_data)
+void	parser_init_data(t_parser_data *parser_data, t_map_data *map_data)
 {
 	map_data->wall[NORTH] = NULL;
 	map_data->wall[EAST] = NULL;

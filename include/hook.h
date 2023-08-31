@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:03:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/31 16:47:47 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:50:27 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ typedef struct s_input
 }				t_input;
 
 void	update_hook_input(t_player player, t_input *input, keys_t key);
-void	update_player(t_player *player, t_input *input);
+void	update_player(t_player *player, t_input *input, t_map_data map_data);
 
 #endif

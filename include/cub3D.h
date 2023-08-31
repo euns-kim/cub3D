@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/31 16:53:13 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 17:35:15 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 # define CUB3D_H
 
 # ifndef WIDTH
-#  define WIDTH 1280
+#  define WIDTH 640
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 960
+#  define HEIGHT 480
 # endif
 
 # ifndef TILE_SIZE
-#  define TILE_SIZE 128
+#  define TILE_SIZE 64
 # endif
 
 # include "MLX42.h"
@@ -65,8 +65,11 @@ typedef struct s_cub
  */
 
 t_vec	get_player_pos(int i, int j);
-double	get_player_dir(int i, int j);
-void	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
+// double	get_player_dir(int i, int j);
+double	get_player_dir(int i, int j, char **map);
+// void	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
+// 	int tile_size, t_player *player);
+void	get_initial_player_info(t_map_data s_map_data, \
 	int tile_size, t_player *player);
 // void	init_minimap_size(t_map_size *minimap_size);
 void	init_map_size(t_map_size *map_size);

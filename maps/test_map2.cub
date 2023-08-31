@@ -2,8 +2,8 @@ NO ./texture/ocean_sq_64.png
 SO ./texture/ocean1_sq_64.png
 WE ./texture/ocean2_sq_64.png
 EA ./texture/ocean3_sq_64.png
-F 0,153,15 
-C 255,255,255
+F 209,243,197
+C 137,207,240
         1111111111111111111111111
         1000000000000000000000001
         1100000000000000000000001
