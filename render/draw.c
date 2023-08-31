@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:20:51 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/29 22:31:55 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:58:47 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,6 @@ void	draw_texture(mlx_image_t *g_img, double x, t_ray ray, mlx_texture_t *wall_t
 
 	wall_type = determine_wall(ray.ray_dir, ray.side);
 	tex_to_draw = wall_tex[wall_type];
-	// if (wall_type)
-	// {
-	// 	printf("wall_type = %d\n", wall_type);
-	// 	printf("ray_dir in radian = %f\n", ray.ray_dir);
-	// 	printf("ray_dir in degree = %f\n", ray.ray_dir * 180 / PI);
-	// 	printf("ray.hit point is [%f][%f] at [%d][%d]\n", ray.intersec.y, ray.intersec.x, \
-	// 		(int)(ray.intersec.y / 64), (int)(ray.intersec.x / 64));
-	// 	printf("ray.side is %d\n", ray.side);
-	// 	printf("ray.dist = %f\n", ray.dist);
-	// 	printf("ray.wall_height = %f\n", ray.wall_height);
-	// 	printf("ray.wall_top = %f\n", ray.wall_top);
-	// 	printf("ray.wall_bottom = %f\n", ray.wall_bottom);
-	// }
-	// printf("texture_to_draw = %p\n", texture_to_draw);
 	tex_x = determine_tex_x(ray.intersec, wall_type, tex_to_draw);
 	img_j = 0;
 	while (img_j < HEIGHT)

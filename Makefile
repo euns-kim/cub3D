@@ -6,7 +6,7 @@
 #    By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/30 17:06:31 by sawang           ###   ########.fr        #
+#    Updated: 2023/08/31 16:54:25 by sawang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ FRAMEWORKS  := -framework Cocoa -framework OpenGL -framework IOKit
 SRC_DIR     := src/
 SRC         := \
 initializer.c \
+hooks.c \
 render_test.c
 
 # SRC_DIR_PARSER	:= parser/
@@ -73,7 +74,6 @@ render_utils.c
 
 SRC_DIR_HOOK	:= hook/
 SRC_HOOK		:= \
-hooks.c \
 update_player.c
 
 SRCS := $(addprefix $(SRC_DIR),$(SRC))
