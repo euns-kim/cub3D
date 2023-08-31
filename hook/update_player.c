@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:42:38 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/31 15:21:48 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:46:59 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ void	update_hook_input(t_player player, t_input *input, keys_t key)
 	if (key == MLX_KEY_S)
 	{
 		input->hori_delta = -cos(player.dir_modif) * STEP;
-		input->vert_delta = -sin(player.dir_modif) * STEP;
+		input->vert_delta = sin(player.dir_modif) * STEP;
 	}
 	if (key == MLX_KEY_A)
 	{
-		input->hori_delta = cos(player.dir_modif + PI / 2) * STEP;
-		input->vert_delta = sin(player.dir_modif + PI / 2) * STEP;
+		input->hori_delta = -sin(player.dir_modif) * STEP;
+		input->vert_delta = -cos(player.dir_modif) * STEP;
 	}
 	if (key == MLX_KEY_D)
 	{
-		input->hori_delta = cos(player.dir_modif - PI / 2) * STEP;
-		input->vert_delta = -sin(player.dir_modif - PI / 2) * STEP;
+		input->hori_delta = sin(player.dir_modif) * STEP;
+		input->vert_delta = cos(player.dir_modif) * STEP;
 	}
 }
 
