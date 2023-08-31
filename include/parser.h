@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:59:10 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/30 18:29:10 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 14:18:04 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,12 @@ void				parser_free_before_exit(t_parser_data *parser_data, \
 					t_map_data *map_data);
 void				error_handler(t_parser_data *parser_data, \
 					t_map_data *map_data, t_parser_exit_code error);
+void				error_handler_2(t_parser_exit_code error);
 
 // parser_free.c
 void				free_p(void *p);
 void				free_str_arr(char **arr);
-// void				parser_free(t_parser_data *parser_data, t_map_data *map_data);
+void				parser_free(t_parser_data *parser_data, \
+					t_map_data *map_data);
 
 #endif

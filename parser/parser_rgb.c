@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:03:21 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/30 18:22:00 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 13:39:07 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,10 @@ t_parser_exit_code	parse_rgb(t_type type, char *line, \
 	t_parser_exit_code	exit_code;
 
 	parser_data->scanner_idx += 1;
+	if (type == FLOOR && parser_data->floor_parsed == true)
+		return (DATA_AMBIGUITY);
+	if (type == CEILING && parser_data->ceiling_parsed == true)
+		return (DATA_AMBIGUITY);
 	exit_code = scan_rgb(line, \
 	&parser_data->scanner_idx, &parser_data->rgb_scanner);
 	if (exit_code != PARSER_SUCCESS)

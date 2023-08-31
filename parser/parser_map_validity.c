@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:55:02 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/30 18:19:53 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 14:17:16 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	check_outer_wall(int i, int j, \
 {
 	if (map_data->map[i][j] != ' ' && map_data->map[i][j] != '1')
 	{
+		printf("i: %d, j: %d, [%c]", i, j, map_data->map[i][j]);
 		printf("hi 2\n");
 		error_handler(parser_data, map_data, UNCLOSED_MAP);
 	}
@@ -45,7 +46,7 @@ void	check_map_validity(t_parser_data *parser_data, t_map_data *map_data)
 	while (++i < map_data->height)
 	{
 		j = -1;
-		while (++i < map_data->width)
+		while (++j < map_data->width)
 		{	
 			if (i == 0 || i == map_data->height - 1 \
 			|| j == 0 || j == map_data->width - 1)

@@ -6,11 +6,22 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:06:31 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/30 18:13:40 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 13:48:38 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+void	error_handler_2(t_parser_exit_code error)
+{
+	if (error == INVALID_ELEMENT)
+		ft_putstr_fd("Invalid element contained in the map.\n", 2);
+	else if (error == MULTIPLE_PLAYER)
+		ft_putstr_fd("Must have only one player.\n", 2);
+	else if (error == UNCLOSED_MAP)
+		ft_putstr_fd("Map should be surrounded by walls.", 2);
+	return ;
+}
 
 void	error_handler(t_parser_data *parser_data, \
 		t_map_data *map_data, t_parser_exit_code error)
@@ -36,7 +47,7 @@ void	error_handler(t_parser_data *parser_data, \
 	else if (error == NO_MAP_FOUND)
 		ft_putstr_fd("No map found.\n", 2);
 	else
-		ft_putstr_fd("\n", 2);
+		error_handler_2(error);
 	exit(error);
 }
 
