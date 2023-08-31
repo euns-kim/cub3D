@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/30 17:14:01 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:53:13 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 # define CUB3D_H
 
 # ifndef WIDTH
-#  define WIDTH 640
+#  define WIDTH 1280
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 480
+#  define HEIGHT 960
 # endif
 
 # ifndef TILE_SIZE
-#  define TILE_SIZE 64
+#  define TILE_SIZE 128
 # endif
 
 # include "MLX42.h"
-// # include "libft.h"
-// # include "get_next_line.h"
+# include "libft.h"
+# include "get_next_line.h"
 # include "parser.h"
 # include "raycast.h"
 // # include "render.h"
