@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:54:49 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/31 17:35:15 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 19:52:53 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 # define CUB3D_H
 
 # ifndef WIDTH
-#  define WIDTH 640
+#  define WIDTH 1280
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 480
+#  define HEIGHT 960
 # endif
 
 # ifndef TILE_SIZE
-#  define TILE_SIZE 64
+#  define TILE_SIZE 128
 # endif
 
 # include "MLX42.h"
@@ -30,7 +30,6 @@
 # include "get_next_line.h"
 # include "parser.h"
 # include "raycast.h"
-// # include "render.h"
 # include "hook.h"
 
 # include <stdio.h>
@@ -54,28 +53,19 @@ typedef struct s_cub
 	mlx_texture_t	*wall_tex[4];
 	t_ray			rays[WIDTH];
 	t_input			hook_input;
-	// img for minimap
-	// mlx_image_t	*g_img_mini;
-	// t_map_size	minimap_size;
-	// img for rays in minimap
-}	t_cub;
+}				t_cub;
 
 /**
  * initializations
  */
-
 t_vec	get_player_pos(int i, int j);
-// double	get_player_dir(int i, int j);
 double	get_player_dir(int i, int j, char **map);
-// void	get_initial_player_info(int worldMap[mapHeight][mapWidth], \
-// 	int tile_size, t_player *player);
 void	get_initial_player_info(t_map_data s_map_data, \
 	int tile_size, t_player *player);
-// void	init_minimap_size(t_map_size *minimap_size);
 void	init_map_size(t_map_size *map_size);
 void	init_input(t_input *input);
 
-//hook function, should it be here?
+//hook function
 void	hook(t_cub *data);
 
 #endif

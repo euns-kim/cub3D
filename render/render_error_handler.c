@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 17:15:55 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/31 18:55:44 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 19:58:36 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_render_exit_code	render_error_print(t_render_exit_code render_error_code)
 		ft_putstr_fd("cannot load the texture from file\n", 2);
 	else if (render_error_code == TEXTURE_NOT_SQUARE)
 		ft_putstr_fd("texture is not square\n", 2);
+	else if (render_error_code == TEXTURE_SMALLER_THAN_TILE)
+		ft_putstr_fd("texture is too small\n", 2);
 	else if (render_error_code == IMG_CANNOT_CREATE)
 		ft_putstr_fd("cannot create image\n", 2);
 	else if (render_error_code == IMG_CANNOT_DISPLAY)

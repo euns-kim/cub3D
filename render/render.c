@@ -6,35 +6,13 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:46:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/31 19:12:47 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 20:00:00 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "cub3D.h"
 #include "raycast.h"
-
-t_render_exit_code	wall_texture_load(mlx_texture_t *wall_tex[], char *wall[])
-{
-	wall_tex[NORTH] = mlx_load_png(wall[NORTH]);
-	wall_tex[EAST] = mlx_load_png(wall[EAST]);
-	wall_tex[SOUTH] = mlx_load_png(wall[SOUTH]);
-	wall_tex[WEST] = mlx_load_png(wall[WEST]);
-	if (!wall_tex[NORTH] || !wall_tex[EAST] || \
-		!wall_tex[SOUTH] || !wall_tex[WEST])
-		return (TEXTURE_CANNOT_LOAD);
-	return (RENDER_SUCCESS);
-}
-
-t_render_exit_code	wall_is_square(mlx_texture_t *wall_tex[])
-{
-	if (wall_tex[NORTH]->width != wall_tex[NORTH]->height || \
-		wall_tex[EAST]->width != wall_tex[EAST]->height || \
-		wall_tex[SOUTH]->width != wall_tex[SOUTH]->height || \
-		wall_tex[WEST]->width != wall_tex[WEST]->height)
-		return (TEXTURE_NOT_SQUARE);
-	return (RENDER_SUCCESS);
-}
 
 void	draw(mlx_image_t *g_img, t_ray *rays, t_map_data map_data, \
 	mlx_texture_t *wall_tex[])
@@ -74,6 +52,8 @@ t_render_exit_code	start_render(t_cub *data)
 		return (render_error_print(TEXTURE_CANNOT_LOAD));
 	if (wall_is_square(data->wall_tex))
 		return (render_error_print(TEXTURE_NOT_SQUARE));
+	if (wall_larger_than_tile(data->wall_tex))
+		return (render_error_print(TEXTURE_SMALLER_THAN_TILE));
 	data->g_img_full = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->g_img_full)
 		return (render_error_print(IMG_CANNOT_CREATE));

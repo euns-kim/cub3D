@@ -6,7 +6,7 @@
 #    By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/31 19:13:17 by sawang           ###   ########.fr        #
+#    Updated: 2023/08/31 20:01:03 by sawang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,16 +64,15 @@ SRC_DIR_RAYCAST	:= raycast/
 SRC_RAYCAST     := \
 calculate_utils.c \
 hit_point.c \
-raycast.c \
-mock_map.c
+raycast.c
 
 SRC_DIR_RENDER	:= render/
 SRC_RENDER      := \
+check_texture.c \
 draw_verti_line.c \
 draw_texture.c \
 render_error_handler.c \
-render.c \
-render_utils.c
+render.c
 
 SRC_DIR_HOOK	:= hook/
 SRC_HOOK        := \

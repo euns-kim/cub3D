@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:41:41 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/31 18:47:10 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 19:36:28 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,7 @@
 #  define FOV 60
 # endif
 
-# ifndef DIST_TO_PROJ
-#  define DIST_TO_PROJ WIDTH / 2 / tan(FOV / 2 * PI / 180)
-# endif
-
 # include <math.h>
-
-# include "mock_map.h"
 
 typedef struct s_vec
 {
@@ -38,7 +32,7 @@ typedef struct s_vec
 typedef struct s_player
 {
 	t_vec	pos;
-	double	dir; //dir of the player is looking at in radian
+	double	dir;
 	t_vec	pos_modif;
 	double	dir_modif;
 }				t_player;
@@ -60,14 +54,6 @@ typedef struct s_ray
 	double	wall_top;
 	double	wall_bottom;
 }				t_ray;
-
-// typedef struct s_data
-// {
-// 	t_player	player;
-// 	 t_input		input;
-// 	t_minimap	minimap;
-// 	t_ray		ray[WIDTH];
-// }				t_data;
 
 /**
  * hit_point calculations
