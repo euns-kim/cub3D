@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:57:11 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/31 20:02:46 by sawang           ###   ########.fr       */
+/*   Updated: 2023/08/31 20:04:31 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,5 @@ void				draw_texture(mlx_image_t *g_img, double x, t_ray ray, \
 // render
 void				render(mlx_image_t *g_img, t_cub *data, keys_t key);
 t_render_exit_code	start_render(t_cub *data);
-
-
 
 #endif
