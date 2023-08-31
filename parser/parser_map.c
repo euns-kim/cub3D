@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 17:15:48 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/30 18:16:11 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 14:56:29 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	get_rectangle_map(t_parser_data *parser_data, t_map_data *map_data)
 		}
 		i++;
 	}
-	for (int i = 0; map_data->map[i] != NULL; i++) // test
-		printf("%s\n", map_data->map[i]);
 }
 
 t_parser_exit_code	parse_tmp_map(char *line, \
@@ -75,9 +73,7 @@ void	parse_map(char *line, t_parser_data *parser_data, t_map_data *map_data)
 	exit_code = parse_tmp_map(line, parser_data, map_data);
 	if (exit_code != PARSER_SUCCESS)
 		error_handler(parser_data, map_data, exit_code);
-	printf("map height: %d\n", map_data->height); // for test
 	get_max_width_map(parser_data->tmp_map, &map_data->width);
-	printf("map max width: %d\n", map_data->width); // for test
 	get_rectangle_map(parser_data, map_data);
 	check_map_validity(parser_data, map_data);
 }

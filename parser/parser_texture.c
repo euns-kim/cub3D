@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:02:55 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/30 18:22:24 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 14:54:21 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,5 @@ t_parser_exit_code	parse_texture(t_type type, char *line, \
 	map_data->wall[type] = ft_strdup(parser_data->texture_path);
 	if (map_data->wall[type] == NULL)
 		return (PARSER_MALLOC_ERROR);
-	printf("texture path: %s\n", map_data->wall[type]);
 	return (PARSER_SUCCESS);
 }

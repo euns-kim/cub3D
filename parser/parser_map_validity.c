@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:55:02 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/31 14:17:16 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 14:55:01 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@ void	check_outer_wall(int i, int j, \
 		t_parser_data *parser_data, t_map_data *map_data)
 {
 	if (map_data->map[i][j] != ' ' && map_data->map[i][j] != '1')
-	{
-		printf("i: %d, j: %d, [%c]", i, j, map_data->map[i][j]);
-		printf("hi 2\n");
 		error_handler(parser_data, map_data, UNCLOSED_MAP);
-	}
 	return ;
 }
 
@@ -30,10 +26,7 @@ void	check_neighbour(int i, int j, \
 	if (i < 0 || j < 0 || i == map_data->height || j == map_data->width)
 		return ;
 	if (map_data->map[i][j] != ' ' && map_data->map[i][j] != '1')
-	{
-		printf("hi 1\n");
 		error_handler(parser_data, map_data, UNCLOSED_MAP);
-	}
 	return ;
 }
 

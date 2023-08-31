@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:57:35 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/30 18:13:14 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 14:53:55 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ void	parse_graphic_data(char *line, \
 	t_parser_exit_code	exit_code;
 
 	exit_code = PARSER_SUCCESS;
-	printf("line: %s", line);
 	type = catch_type(line, &parser_data->scanner_idx);
-	printf("type: %d\n", type);
 	if (type >= NORTH && type <= WEST)
 		exit_code = parse_texture(type, line, parser_data, map_data);
 	else if (type == FLOOR || type == CEILING)
@@ -96,7 +94,6 @@ t_parser_exit_code	parser(t_map_data *map_data, const char *path)
 	}
 	line = check_parsing_status_and_advance(line, &parser_data, map_data);
 	parse_map(line, &parser_data, map_data);
-	parser_free_before_exit(&parser_data, map_data); // for test
-	printf("Parsed successfully!\n"); // for test
+	parser_free(&parser_data);
 	return (PARSER_SUCCESS);
 }

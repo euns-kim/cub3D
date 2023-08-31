@@ -6,7 +6,7 @@
 /*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:03:21 by eunskim           #+#    #+#             */
-/*   Updated: 2023/08/31 13:39:07 by eunskim          ###   ########.fr       */
+/*   Updated: 2023/08/31 14:55:52 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_parser_exit_code	get_rgb(t_type type, t_rgb *rgb_scanner, \
 	|| green < 0 || blue > 255 || blue < 0)
 		return (BAD_RGB);
 	color = ((red << 24) | (green << 16) | (blue << 8) | 0xFF);
-	printf("resulted color: %x\n", color);
 	if (type == FLOOR)
 	{
 		map_data->floor_color = color;
@@ -64,7 +63,6 @@ t_parser_exit_code	scan_color_code(char *line, int *idx, \
 	while (line[*idx] && ft_strchr(WHITESPACES, line[*idx]) != 0)
 		(*idx)++;
 	*color_start = line + *idx;
-	printf("%s", *color_start);
 	while (ft_strchr(WHITESPACES, line[*idx]) == 0 && line[*idx] != ',')
 	{
 		if (ft_isdigit(line[*idx]) == 0)
@@ -72,7 +70,6 @@ t_parser_exit_code	scan_color_code(char *line, int *idx, \
 		(*idx)++;
 	}
 	*color_len = (line + *idx - *color_start);
-	printf("%d\n", *color_len);
 	return (PARSER_SUCCESS);
 }
 
