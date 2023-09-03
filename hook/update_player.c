@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:42:38 by sawang            #+#    #+#             */
-/*   Updated: 2023/08/31 19:24:11 by sawang           ###   ########.fr       */
+/*   Updated: 2023/09/03 16:19:00 by eunskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ void	update_player(t_player *player, t_input *input, t_map_data map_data)
 		(int)(temp_pos.x / TILE_SIZE) < map_data.width && \
 		(int)(temp_pos.x / TILE_SIZE) >= 0 && \
 		map_data.map[(int)(temp_pos.y / TILE_SIZE)] \
+		[(int)(temp_pos.x / TILE_SIZE)] != '1' && \
+		map_data.map[(int)(temp_pos.y / TILE_SIZE)] \
+		[(int)(player->pos_modif.x / TILE_SIZE)] != '1' && \
+		map_data.map[(int)(player->pos_modif.y / TILE_SIZE)] \
 		[(int)(temp_pos.x / TILE_SIZE)] != '1')
 	{
 		player->pos_modif.x = temp_pos.x;
