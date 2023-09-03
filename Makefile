@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sawang <sawang@student.42heilbronn.de>     +#+  +:+       +#+         #
+#    By: eunskim <eunskim@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 14:38:23 by eunskim           #+#    #+#              #
-#    Updated: 2023/08/31 20:01:03 by sawang           ###   ########.fr        #
+#    Updated: 2023/09/03 15:20:58 by eunskim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ RESET   := \033[0m
 
 #//= Mandatory part =//#
 NAME        := cub3D
+BONUS_NAME  := cub3D_bonus
 CC          := cc
 CFLAGS      := -Wextra -Wall -Werror
 CFLAGS      += -Wunreachable-code -Ofast
@@ -136,11 +137,14 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f $(BONUS_NAME)
 	@rm -f $(MLX42)
 	@rm -f $(LIBFT)
 	@rm -f $(GNL)
 
 re: fclean all
 
+bonus: re
+	$(shell mv $(NAME) $(BONUS_NAME))
 
-.PHONY: all, clean, fclean, re, libmlx, libft, libgnl
+.PHONY: all, clean, fclean, re, libmlx, libft, libgnl, bonus
